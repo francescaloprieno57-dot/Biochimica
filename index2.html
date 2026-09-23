@@ -1,1 +1,1029 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulatore Quiz Biochimica - Modulo 2 (Lezioni 21-145)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .nav-buttons a {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .nav-buttons a:hover {
+            background-color: #2980b9;
+        }
+        .lesson-section {
+            margin-bottom: 40px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+        }
+        .lesson-title {
+            color: #2980b9;
+            border-left: 5px solid #3498db;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #e1e1e1;
+        }
+        .question p {
+            font-weight: bold;
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        img.quiz-img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
 
+<div class="container">
+    <h1>Simulatore Quiz Biochimica - Modulo 2</h1>
+    
+    <div class="nav-buttons">
+        <a href="index.html">&larr; Modulo Precedente (Index)</a>
+        <a href="index1.html">Modulo 1 (Index1) &rarr;</a>
+    </div>
+
+    <form id="quizForm">
+
+        <!-- LEZIONE 021 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 021</h2>
+            
+            <div class="question">
+                <p>01. Per accoppiamento energetico si intende ..</p>
+                <label><input type="radio" name="l21_q1" value="0"> Due reazioni energeticamente sfavorite sono catalizzate da un solo enzima, purché sia presente un intermedio comune</label>
+                <label><input type="radio" name="l21_q1" value="0"> Due reazioni esoergoniche possono essere accoppiate per produrre energia più rapidamente indipendentemente dalla presenza di un intermedio comune</label>
+                <label><input type="radio" name="l21_q1" value="0"> Due reazioni di trasformazione energeticamente favorita possono essere accoppiate per produrre grandi quantità di energia, purché sia presente un intermedio comune</label>
+                <label><input type="radio" name="l21_q1" value="1"> Una trasformazione energeticamente sfavorita può essere guidata mediante accoppiamento con una reazione altamente esoergonica, purché sia presente un intermedio comune</label>
+            </div>
+
+            <div class="question">
+                <p>02. Quale delle seguenti affermazioni sulla forma ciclica (ad anello) del D-glucosio è vera?</p>
+                <label><input type="radio" name="l21_q2" value="1"> La forma ciclica del D-glucosio deriva dalla formazione di un legame covalente tra il gruppo carbonilico e l'ossigeno di un gruppo ossidrilico lungo la catena.</label>
+                <label><input type="radio" name="l21_q2" value="0"> La forma ciclica del D-glucosio deriva dalla formazione di un legame tra gli atomi di carbonio C-1 e C-6.</label>
+                <label><input type="radio" name="l21_q2" value="0"> In soluzione acquosa, la forma ciclica del D-glucosio è rara.</label>
+                <label><input type="radio" name="l21_q2" value="0"> La forma ciclica del D-glucosio è un furanosio.</label>
+            </div>
+
+            <div class="question">
+                <p>03. Quale delle seguenti affermazioni sul modo in cui un disaccaride si forma da due monosaccaridi è vera?</p>
+                <label><input type="radio" name="l21_q3" value="1"> I monosaccaridi sono legati in una reazione che elimina acqua.</label>
+                <label><input type="radio" name="l21_q3" value="0"> Un disaccaride è costituito da due monosaccaridi legati l'uno con l'altro mediante un legame N-glicosidico.</label>
+                <label><input type="radio" name="l21_q3" value="0"> I disaccaridi si formano da una reazione di idrolisi.</label>
+                <label><input type="radio" name="l21_q3" value="0"> I disaccaridi si formano quando un gruppo ossidrilico di un monosaccaride reagisce con il gruppo ossidrilico di un altro monosaccaride.</label>
+            </div>
+
+            <div class="question">
+                <p>04. Si definiscono enantiomeri due isomeri che sono tra loro:</p>
+                <label><input type="radio" name="l21_q4" value="0"> isomeri di struttura asimmetrici.</label>
+                <label><input type="radio" name="l21_q4" value="1"> l'uno l'immagine speculare dell'altro non sovrapponibili.</label>
+                <label><input type="radio" name="l21_q4" value="0"> identici per la disposizione spaziale.</label>
+                <label><input type="radio" name="l21_q4" value="0"> isomeri geometrici tridimensionali.</label>
+            </div>
+
+            <div class="question">
+                <p>05. I carboidrati sono immagazzinati a scopo energetico sotto forma di:</p>
+                <label><input type="radio" name="l21_q5" value="0"> lattosio nella ghiandola mammaria.</label>
+                <label><input type="radio" name="l21_q5" value="1"> omopolisaccaridi nella maggior parte degli esseri viventi.</label>
+                <label><input type="radio" name="l21_q5" value="0"> proteoglicani</label>
+                <label><input type="radio" name="l21_q5" value="0"> glicoproteine</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 022 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 022</h2>
+            
+            <div class="question">
+                <p>01. Il D-glucosio e il D-mannosio</p>
+                <label><input type="radio" name="l22_q1" value="0"> sono epimeri al C-5</label>
+                <label><input type="radio" name="l22_q1" value="1"> sono epimeri al C-2</label>
+                <label><input type="radio" name="l22_q1" value="0"> sono epimeri al C-4</label>
+                <label><input type="radio" name="l22_q1" value="0"> sono epimeri al C-3</label>
+            </div>
+
+            <div class="question">
+                <p>02. Il fruttosio è:</p>
+                <label><input type="radio" name="l22_q2" value="0"> Un cheto pentoso</label>
+                <label><input type="radio" name="l22_q2" value="1"> Un cheto esoso</label>
+                <label><input type="radio" name="l22_q2" value="0"> Un cheto eptoso</label>
+                <label><input type="radio" name="l22_q2" value="0"> Un aldo esoso</label>
+            </div>
+
+            <div class="question">
+                <p>03. Quale dei seguenti è un polisaccaride strutturale nelle cellule vegetali?</p>
+                <label><input type="radio" name="l22_q3" value="1"> La cellulosa.</label>
+                <label><input type="radio" name="l22_q3" value="0"> L'amilosio</label>
+                <label><input type="radio" name="l22_q3" value="0"> Il glicogeno.</label>
+                <label><input type="radio" name="l22_q3" value="0"> L'amido.</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 024 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 024</h2>
+            <div class="question">
+                <p>01. Quale di queste affermazioni riguardo al glicogeno è FALSA?</p>
+                <label><input type="radio" name="l24_q1" value="0"> L'insulina stimola la sintesi del glicogeno.</label>
+                <label><input type="radio" name="l24_q1" value="1"> E' un polimero del glucosio non ramificato.</label>
+                <label><input type="radio" name="l24_q1" value="0"> La glicogenina è la proteine iniziatrice del processo di sintesi del glicogeno.</label>
+                <label><input type="radio" name="l24_q1" value="0"> Viene immagazzinato principalmente nel fegato e nel muscolo.</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 032 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 032</h2>
+            <div class="question">
+                <p>01. Quale delle seguenti affermazioni sul trasporto attivo è vera?</p>
+                <label><input type="radio" name="l32_q1" value="0"> Deve essere necessariamente associato all'idrolisi di ADP.</label>
+                <label><input type="radio" name="l32_q1" value="1"> Le specie trasportate si muovono sempre contro il loro gradiente elettrochimico.</label>
+                <label><input type="radio" name="l32_q1" value="0"> È esoergonico.</label>
+                <label><input type="radio" name="l32_q1" value="0"> È necessario solo per il trasporto di molecole polari.</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 035 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 035</h2>
+            <div class="question">
+                <p>01. Gli acidi biliari e i loro sali sono:</p>
+                <label><input type="radio" name="l35_q1" value="0"> molecole una famiglia di molecole steroidee che si formano per idrolisi adoperata dalla chimosina</label>
+                <label><input type="radio" name="l35_q1" value="1"> molecole una famiglia di molecole steroidee anfipatiche derivanti dal metabolismo del colesterolo</label>
+                <label><input type="radio" name="l35_q1" value="0"> regolano il metabolismo dei glucidi</label>
+                <label><input type="radio" name="l35_q1" value="0"> Hanno funzione strutturale della membrana cellulare degli enterociti</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 037 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 037</h2>
+            <div class="question">
+                <p>01. Qual è l’effetto comune di adrenalina e glucagone sul metabolismo del glicogeno nel fegato?</p>
+                <label><input type="radio" name="l37_q1" value="1"> Entrambi gli ormoni provocano l’aumento della degradazione del glicogeno e la riduzione della sua sintesi attraverso modifiche covalenti (fosforilazioni) di enzimi chiave del metabolismo del glicogeno. La glicogeno fosforilasi viene fosforilata e attivata, mentre la glicogeno sintasi viene fosforilata e inattivata</label>
+                <label><input type="radio" name="l37_q1" value="0"> Il glucagone agisce andando ad attivare l’enzima glicogeno sintasi, l'adrenalina fosforila ed attiva la glicogeno fosforilasi</label>
+                <label><input type="radio" name="l37_q1" value="0"> Entrambi gli ormoni causano un aumento della sintesi del glicogeno</label>
+                <label><input type="radio" name="l37_q1" value="0"> Entrambi gli ormoni aumentano la sintesi del glicogeno attraverso modifiche covalenti (fosforilazioni) di enzimi chiave del suo metabolismo: fosforilano e attivano glicogeno fosforilasi e glicogeno sintasi.</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 038 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 038</h2>
+            <div class="question">
+                <p>01. Quali delle seguenti affermazioni relative alle vie metaboliche sono corrette?<br>A) Le vie metaboliche sono irreversibili.<br>B) Ogni via metabolica ha una prima tappa di controllo.<br>C) Le vie cataboliche e le vie anaboliche sono differenti.</p>
+                <label><input type="radio" name="l38_q1" value="1"> tutte le affermazioni sono corrette</label>
+                <label><input type="radio" name="l38_q1" value="0"> solo l'affermazione A</label>
+                <label><input type="radio" name="l38_q1" value="0"> solo le affermazioni A e C</label>
+                <label><input type="radio" name="l38_q1" value="0"> solo l'affermazione B</label>
+            </div>
+            <div class="question">
+                <p>02. Quale tra le seguenti affermazioni è corretta?</p>
+                <label><input type="radio" name="l38_q2" value="0"> La glicolisi e la fosforilazione ossidativa avvengono nel citotol, mentre la biosintesi degli acidi grassi avviene nei mitocondri</label>
+                <label><input type="radio" name="l38_q2" value="1"> La fosforilazione ossidativa avviene nei mitocondri, mentre la glicolisi e la biosintesi degli acidi grassi avvengono nel citosol</label>
+                <label><input type="radio" name="l38_q2" value="0"> La glicolisi avviene nei mitocondri, mentre la biosintesi degli acidi grassi avviene nel citosol</label>
+                <label><input type="radio" name="l38_q2" value="0"> La glicolisi avviene nei mitocondri, mentre la fosforilazione ossidativa e la biosintesi degli acidi grassi avvengono nel citosol</label>
+            </div>
+            <div class="question">
+                <p>03. Quali sono i meccanismi a livello cellulare utilizzati per controllare il flusso nelle tappe che determinano la velocità di una via metabolica.</p>
+                <label><input type="radio" name="l38_q3" value="0"> esclusivamente mediante modificazioni covalenti</label>
+                <label><input type="radio" name="l38_q3" value="1"> Il controllo allosterico; Le modificazioni covalenti (es. fosforilazioni); Il controllo genetico.</label>
+                <label><input type="radio" name="l38_q3" value="0"> esclusivamente mediante controllo genetico</label>
+                <label><input type="radio" name="l38_q3" value="0"> esclusivamente mediante controllo allosterico</label>
+            </div>
+            <div class="question">
+                <p>04. Quale di queste affermazioni riguardo al metabolismo NON è corretta?</p>
+                <label><input type="radio" name="l38_q4" value="0"> Le vie cataboliche demoliscono molecole complesse generando molecole semplici, producendo energia.</label>
+                <label><input type="radio" name="l38_q4" value="1"> Le vie anaboliche utilizzano molecole semplici come precursori per sintetizzare macromolecole, senza dover però consumare energia.</label>
+                <label><input type="radio" name="l38_q4" value="0"> Le vie cataboliche sono generalmente convergenti mentre quelle anaboliche sono divergenti.</label>
+                <label><input type="radio" name="l38_q4" value="0"> Il metabolismo è costituito dall'insieme di tutte le vie metaboliche cellulari.</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 039 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 039</h2>
+            <div class="question">
+                <p>01. La fosfofruttochinasi-1 (PFK1) è l'enzima che catalizza il "committed step" della glicolisi. Cosa si intende per "committed step"?</p>
+                <label><input type="radio" name="l39_q1" value="0"> E' l'unica tappa della via glicolitica soggetta a regolazione allosterica.</label>
+                <label><input type="radio" name="l39_q1" value="1"> E' l'unica tappa regolata della via glicolitica esclusiva solo della via glicolitica e non condivisa con altre vie metaboliche.</label>
+                <label><input type="radio" name="l39_q1" value="0"> E' l'unica tappa della via glicolitica che produce un composto ad alto potenziale di trasferimento di gruppi fosfato.</label>
+                <label><input type="radio" name="l39_q1" value="0"> E' l'unica tappa della via glicolitica a non essere soggetta a regolazione allosterica.</label>
+            </div>
+            <div class="question">
+                <p>02. Completa la seguente affermazione: Nella fase I (Reazioni 1-5) della glicolisi, una molecola di glucosio è trasformata in [A] molecole di gliceraldeide-3-fosfato in una serie di reazioni in cui si ha il consumo di due molecole di [B]. Nella fase II della glicolisi (Reazioni 6-10), le [A] molecole di gliceraldeide-3-fosfato sono trasformate in due molecole di piruvato, producendo 4 ATP e 2 [C].</p>
+                <label><input type="radio" name="l39_q2" value="0">[A] = una ; [B]= ADP. [C]=NADH</label>
+                <label><input type="radio" name="l39_q2" value="0">[A] = due ; [B]= ADP. [C]=FAD</label>
+                <label><input type="radio" name="l39_q2" value="1">[A] = due ; [B]= ATP. [C]=NADH</label>
+                <label><input type="radio" name="l39_q2" value="0">[A] = due ; [B]= ATP. [C]=NADPH</label>
+            </div>
+            <div class="question">
+                <p>03. L'enzima proteolitico pepsina, opera a livello gastrico una prima grossolana digestione delle proteine. La pepsina ha una attività limitata ad uno specifico intervallo di pH. A quale valore di pH corrisponde la massima attività di questo enzima?</p>
+                <label><input type="radio" name="l39_q3" value="0"> 10-12</label>
+                <label><input type="radio" name="l39_q3" value="0"> 6-7</label>
+                <label><input type="radio" name="l39_q3" value="1"> 2-3</label>
+                <label><input type="radio" name="l39_q3" value="0"> 8-10</label>
+            </div>
+            <div class="question">
+                <p>04. Quale dei seguenti enzimi NON viene utilizzato per intrappolare lo zucchero nella cellula?</p>
+                <label><input type="radio" name="l39_q4" value="0"> Fruttochinasi</label>
+                <label><input type="radio" name="l39_q4" value="0"> Galattochinasi</label>
+                <label><input type="radio" name="l39_q4" value="0"> Esochinasi</label>
+                <label><input type="radio" name="l39_q4" value="1"> Fosfofruttochinasi</label>
+            </div>
+            <div class="question">
+                <p>05. La seguente reazione descrive...</p>
+                <img src="1.png" alt="Lezione 39 Domanda 5" class="quiz-img">
+                <label><input type="radio" name="l39_q5" value="1"> La reazione 7 della via glicolitica che forma ATP e 3-fosfoglicerato (3PG) tramite una reazione catalizzata dalla fosfoglicerato chinasi (PGK)</label>
+                <label><input type="radio" name="l39_q5" value="0"> Nella reazione 9 della glicolisi di ideidratazione della gliceraldeide-3-fosfatol a fosfoenolpiruvato, in una reazione catalizzata dall’enolasi.</label>
+                <label><input type="radio" name="l39_q5" value="0"> La reazione 6 della via glicolitica di fosforilazione del 3-fosfoglicerato catalizzata dalla gliceraldeide-3-fosfato deidrogenasi</label>
+                <label><input type="radio" name="l39_q5" value="0"> La reazione 4 della via glicolitica di conversione della gliceraldeide-3-fosfato (GAP) in diidrossiacetone fosfato catalizzata dall'aldolasi</label>
+            </div>
+            <div class="question">
+                <p>06. Quale enzima catalizza la seguente reazione della via glicolitica?</p>
+                <img src="2.png" alt="Lezione 39 Domanda 6" class="quiz-img">
+                <label><input type="radio" name="l39_q6" value="0"> gliceraldeide 3-fosfato liasi</label>
+                <label><input type="radio" name="l39_q6" value="0"> Fosfofruttochinasi-1</label>
+                <label><input type="radio" name="l39_q6" value="1"> fruttosio 1,6-bisfosfato aldolasi</label>
+                <label><input type="radio" name="l39_q6" value="0"> fosfoesosio isomerasi</label>
+            </div>
+            <div class="question">
+                <p>07. Nella via glicolitica, il Fruttosio-1,6-bisfosfato viene convertito in</p>
+                <label><input type="radio" name="l39_q7" value="1"> gliceraldeide-3-fosfato (GAP) e diidrossiacetone fosfato (DHAP) ad opera della Aldolasi</label>
+                <label><input type="radio" name="l39_q7" value="0"> in 1,3-Bisfosfoglicerato ad opera della gliceraldeide-3-fosfato deidrogenasi</label>
+                <label><input type="radio" name="l39_q7" value="0"> 3-Fosfoglicerato ad opera della fosfoglicerato chinasi</label>
+                <label><input type="radio" name="l39_q7" value="0"> in Fruttosio-6-fosfato ad opera della fosfoglucosio isomerasi</label>
+            </div>
+            <div class="question">
+                <p>08. Cosa descrive e quale enzima catalizza la reazione riportata in figura?</p>
+                <img src="3.png" alt="Lezione 39 Domanda 8" class="quiz-img">
+                <label><input type="radio" name="l39_q8" value="1"> conversione della gliceraldeide-3-fosfato in diidrossiacetone fosfato catalizzata della aldolasi</label>
+                <label><input type="radio" name="l39_q8" value="0"> fosforilazione del glucosio-6-fosfato per formare fruttosio-1,6-bifosfato catalizzata dalla fosfofruttochinasi</label>
+                <label><input type="radio" name="l39_q8" value="0"> formazione di glucosio-6-fosfato catalizzata dalla esochinasi</label>
+                <label><input type="radio" name="l39_q8" value="0"> conversione del glucosio-6-fosfato in fruttosio-6-fosfato catalizzata della fosfoglucosio isomerasi</label>
+            </div>
+            <div class="question">
+                <p>09. La seguente reazione descrive:</p>
+                <img src="4.png" alt="Lezione 39 Domanda 9" class="quiz-img">
+                <label><input type="radio" name="l39_q9" value="1"> la conversione del glucosio-6-fosfato (G6P) in fruttosio-6-fosfato (F6P) per mezzo della fosfoglucosio isomerasi (PGI)</label>
+                <label><input type="radio" name="l39_q9" value="0"> la fosforilazione del Fruttosio-6-fosfato per ottenere fruttosio-1,6-bisfosfato</label>
+                <label><input type="radio" name="l39_q9" value="0"> Il trasferimento di un gruppo fosforico dall’ATP al Fruttosio per formare Fruttosio-6-fosfato (F6P) per mezzo della fosfoglucosio isomerasi</label>
+                <label><input type="radio" name="l39_q9" value="0"> il trasferimento di un gruppo fosforico dall’ATP al glucosio con la formazione di glucosio-6-fosfato (G6P) in una reazione catalizzata dall’esochinasi.</label>
+            </div>
+            <div class="question">
+                <p>10. La fosfofruttochinasi catalizza</p>
+                <label><input type="radio" name="l39_q10" value="0"> la conversione del glucosio-6-fosfato in fruttosio-6-fosfato</label>
+                <label><input type="radio" name="l39_q10" value="1"> la fosforilazione del fruttosio-6-fosfato con la formazione di fruttosio-1,6-bisfosfato</label>
+                <label><input type="radio" name="l39_q10" value="0"> tenere fruttosio-1,6-bisfosfato</label>
+                <label><input type="radio" name="l39_q10" value="0"> la fosforilazione in C1 del fruttosioda parte dell’ATP, formando fruttosio-1-fosfato.</label>
+            </div>
+            <div class="question">
+                <p>11. La fosfoglucosio isomerasi catalizza</p>
+                <label><input type="radio" name="l39_q11" value="1"> la conversione del glucosio-6-fosfato in fruttosio-6-fosfato</label>
+                <label><input type="radio" name="l39_q11" value="0"> la fosforilazione in C1 del fruttosioda parte dell’ATP, formando fruttosio-1-fosfato.</label>
+                <label><input type="radio" name="l39_q11" value="0"> la fosforilazione del fruttosio-6-fosfato con la formazione di fruttosio-1,6-bisfosfato</label>
+                <label><input type="radio" name="l39_q11" value="0"> il trasferimento di un gruppo fosforico dall’ATP al glucosio con la formazione di glucosio-6-fosfato</label>
+            </div>
+            <div class="question">
+                <p>12. L’esochinasi catalizza ...</p>
+                <label><input type="radio" name="l39_q12" value="0"> la conversione del glucosio-6-fosfato in fruttosio-6-fosfato</label>
+                <label><input type="radio" name="l39_q12" value="0"> la fosforilazione del fruttosio-6-fosfato con la formazione di fruttosio-1,6-bisfosfato</label>
+                <label><input type="radio" name="l39_q12" value="1"> il trasferimento di un gruppo fosforico dall’ATP al glucosio con la formazione di glucosio-6-fosfato</label>
+                <label><input type="radio" name="l39_q12" value="0"> la fosforilazione in C1 del fruttosio da parte dell’ATP, formando fruttosio-1-fosfato.</label>
+            </div>
+            <div class="question">
+                <p>13. La glicolisi trasforma il glucosio in due unità C3. L’energia libera rilasciata durante il processo è impiegata per sintetizzare ATP partendo da ADP e Pi. Nelle 10 tappe della via glicolitica, gli enzimi catalizzano le reazioni ...</p>
+                <label><input type="radio" name="l39_q13" value="0"> di scissione di legami carbonio-carbonio, di ossidazione e di idratazione</label>
+                <label><input type="radio" name="l39_q13" value="0"> esclusivamente di fosforilazione e di scissione di legami carbonio-carbonio</label>
+                <label><input type="radio" name="l39_q13" value="0"> di fosforilazione, di idrolisi, di enolizzazione, di de-fosforilazione e di isomerizzazione</label>
+                <label><input type="radio" name="l39_q13" value="1"> fosforilazione, di isomerizzazione, di scissione di legami carbonio-carbonio e di deidratazione</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 040 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 040</h2>
+            <div class="question">
+                <p>01. Relativamente all'assorbimento intestinale dei lipidi. Qual è il destino degli acidi grassi a catena lunga contenuti nelle micelle?</p>
+                <label><input type="radio" name="l40_q1" value="0"> Diffusione diretta attraverso l'intestino nel sistema circolatorio</label>
+                <label><input type="radio" name="l40_q1" value="0"> Trasporto in chilomicroni rilasciati nel sistema circolatorio</label>
+                <label><input type="radio" name="l40_q1" value="1"> Trasporto in chilomicroni rilasciati nel sistema linfatico.</label>
+                <label><input type="radio" name="l40_q1" value="0"> Diffusione diretta attraverso l'intestino nel sistema linfatico</label>
+            </div>
+            <div class="question">
+                <p>02. L'insieme dei processi che permettono a un organismo di mantenere al suo interno condizioni chimico-fisiche stabili è definito:</p>
+                <label><input type="radio" name="l40_q2" value="0"> osmolarità</label>
+                <label><input type="radio" name="l40_q2" value="1"> omeostasi</label>
+                <label><input type="radio" name="l40_q2" value="0"> feedback</label>
+                <label><input type="radio" name="l40_q2" value="0"> osmosi</label>
+            </div>
+            <div class="question">
+                <p>03. Ognuno dei seguenti enzimi catalizza una fase limitante di una via del metabolismo dei carboidrati TRANNE:</p>
+                <label><input type="radio" name="l40_q3" value="1"> esochinasi</label>
+                <label><input type="radio" name="l40_q3" value="0"> glicogeno sintasi</label>
+                <label><input type="radio" name="l40_q3" value="0"> fruttosio-1,6-bisfosfatasi</label>
+                <label><input type="radio" name="l40_q3" value="0"> glucosio-6-fosfato deidrogenasi</label>
+            </div>
+            <div class="question">
+                <p>04. La regolazione della via glicolitica può avvenire</p>
+                <label><input type="radio" name="l40_q4" value="1"> a BREVE TERMINE mediante controllo allosterico e a LUNGO TERMINE mediante modificazione dei livelli enzimatici</label>
+                <label><input type="radio" name="l40_q4" value="0"> esclusivamente a LUNGO TERMINE</label>
+                <label><input type="radio" name="l40_q4" value="0"> esclusivamente a BREVE TERMINE</label>
+                <label><input type="radio" name="l40_q4" value="0"> a BREVE TERMINE mediante modificazione dei livelli enzimatici e a LUNGO TERMINE mediante controllo allosterico</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 041 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 041</h2>
+            <div class="question">
+                <p>01. Quale tra le seguenti affermazioni è corretta?</p>
+                <label><input type="radio" name="l41_q1" value="0"> La glicogenina è una glicosiltransferasi che genera ramificazioni alfa (1->6) della molecola di glicogeno</label>
+                <label><input type="radio" name="l41_q1" value="0"> La glicogenina catalizza anche la conversione del glucosio in glucosio-6-fosfato in glucosio-1-fosfato</label>
+                <label><input type="radio" name="l41_q1" value="0"> La glicogenina è una glicosiltransferasi che innesca la glicogenolisi</label>
+                <label><input type="radio" name="l41_q1" value="1"> La glicogenina è una glicosiltransferasi che innesca la sintesi del glicogeno</label>
+            </div>
+            <div class="question">
+                <p>02. Dopo un breve periodo di esercizio fisico intenso, l'attività della piruvato deidrogenasi muscolare aumenta notevolmente. Questo aumento dell'attività è probabilmente dovuto a:</p>
+                <label><input type="radio" name="l41_q2" value="0"> aumento dell'acetil-CoA</label>
+                <label><input type="radio" name="l41_q2" value="0"> diminuzione dell'ADP</label>
+                <label><input type="radio" name="l41_q2" value="0"> aumento del rapporto NADH/NAD+</label>
+                <label><input type="radio" name="l41_q2" value="1"> aumento della concentrazione di piruvato.</label>
+            </div>
+            <div class="question">
+                <p>03. Quale tra i seguenti è un enzima necessario per la glicolisi?</p>
+                <label><input type="radio" name="l41_q3" value="0"> Piruvato carbossilasi</label>
+                <label><input type="radio" name="l41_q3" value="0"> Glicerochinasi</label>
+                <label><input type="radio" name="l41_q3" value="0"> Glucosio-6-fosfatasi</label>
+                <label><input type="radio" name="l41_q3" value="1"> Piruvato chinasi</label>
+            </div>
+            <div class="question">
+                <p>04. Quale tra le seguenti affermazioni relativamente alla glicogenolisi è corretta</p>
+                <label><input type="radio" name="l41_q4" value="1"> L'enzima glicogenofosforilasi catalizza la fosforolisi del glicogeno rilasciando glucosio-1-fosfato</label>
+                <label><input type="radio" name="l41_q4" value="0"> L'enzima glicogenofosforilasi è anche noto come enzima de-ramificante del glicogeno</label>
+                <label><input type="radio" name="l41_q4" value="0"> L'enzima glicogenofosforilasi catalizza la fosforolisi del glicogeno rilasciando glucosio-6-fosfato</label>
+                <label><input type="radio" name="l41_q4" value="0"> L'enzima glicogenofosforilasi catalizza anche la conversione del glucosio-6-fosfato in glucosio-3-fosfato</label>
+            </div>
+            <div class="question">
+                <p>05. La gluconeogenesi è un processo metabolico mediante il quale</p>
+                <label><input type="radio" name="l41_q5" value="0"> viene sintetizzata la glicina</label>
+                <label><input type="radio" name="l41_q5" value="0"> viene sintetizzato glicogeno a partire da acido lattico</label>
+                <label><input type="radio" name="l41_q5" value="0"> vengono sintetizzati acidi grassi a partire da glicogeno</label>
+                <label><input type="radio" name="l41_q5" value="1"> viene sintetizzato glucosio a partire da precursori non saccaridici</label>
+            </div>
+            <div class="question">
+                <p>06. Quale affermazione relativa alla piruvato deidrogenasi è ERRATA?</p>
+                <label><input type="radio" name="l41_q6" value="1"> è ancorato alla membrana del nucleo cellulare tramite strutture poriniche che lo complessano al DNA</label>
+                <label><input type="radio" name="l41_q6" value="0"> è un enzima mitocondriale, appartenente alla classe delle ossidoreduttasi ed il FAD è uno dei cofattori</label>
+                <label><input type="radio" name="l41_q6" value="0"> catalizza la sintesi dell'Acetil-CoA</label>
+                <label><input type="radio" name="l41_q6" value="0"> La piruvato deidrogenasi è un complesso multienzimatico, noto anche come complesso multienzimatico della piruvato deidrogenasi.</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 042 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 042</h2>
+            <div class="question">
+                <p>01. Quale delle seguenti affermazioni riguardo al destino del piruvato nell'uomo è FALSA?</p>
+                <label><input type="radio" name="l42_q1" value="0"> In condizioni anaerobiche viene utilizzato per produrre lattato.</label>
+                <label><input type="radio" name="l42_q1" value="0"> In condizioni aerobiche viene utilizzato per generare acetil-CoA.</label>
+                <label><input type="radio" name="l42_q1" value="0"> Il piruvato può essere utilizzato tramite la via della gluconeogenesi per risintetizzare glucosio</label>
+                <label><input type="radio" name="l42_q1" value="1"> In condizioni anaerobiche viene utilizzato mediante fermentazione alcolica per produrre etanolo.</label>
+            </div>
+            <div class="question">
+                <p>02. La Citrato sintasi catalizza la reazione</p>
+                <label><input type="radio" name="l42_q2" value="0"> di trasformazione reversibile del citrato in isocitrato</label>
+                <label><input type="radio" name="l42_q2" value="0"> di ossidazione del succinato a fumarato</label>
+                <label><input type="radio" name="l42_q2" value="0"> di decarbossilazione ossidativa dell’isocitrato ad alfa-chetoglutarato</label>
+                <label><input type="radio" name="l42_q2" value="1"> di condensazione dell’acetil-CoA con l’ossalacetato per formare citrato</label>
+            </div>
+            <div class="question">
+                <p>03. Quale tra le seguenti affermazioni relativamente al Ciclo dell’Acido Citrico è corretta</p>
+                <label><input type="radio" name="l42_q3" value="0"> è un processo catalitico a molte tappe che converte l'AcetilCoA derivante dai carboidrati ed amminoacidi in CO2 ed energia, ma non coinvolge l'AcetilCoA derivante dagli acidi grassi che entrano nel ciclo della beta-ossidazione</label>
+                <label><input type="radio" name="l42_q3" value="0"> è un processo catalitico a molte tappe che converte l'acido citrico in AcetilCoA e CO2 e ATP</label>
+                <label><input type="radio" name="l42_q3" value="1"> è un processo catalitico a molte tappe che converte i gruppi acetilici (AcetilCoA) derivati dai carboidrati, dagli acidi grassi e dagli amminoacidi in CO2, producendo NADH, FADH2 e ATP o GTP</label>
+                <label><input type="radio" name="l42_q3" value="0"> è un processo catalitico a molte tappe che produce AcetilCoA</label>
+            </div>
+            <div class="question">
+                <p>04. Quale affermazione relativa all'enzima succinato deidrogenasi è corretta</p>
+                <label><input type="radio" name="l42_q4" value="1"> L'enzima succinato deidrogenasi catalizza la deidrogenazione stereospecifica del succinato a fumarato. Contiene un gruppo prostetico costituito dal FAD e la reazione genera FADH2</label>
+                <label><input type="radio" name="l42_q4" value="0"> L'enzima succinato deidrogenasi catalizza la deidrogenazione stereospecifica del succinato ad alfa-chetoglutarato Contiene un gruppo prostetico costituito dal FAD e la reazione genera FADH2</label>
+                <label><input type="radio" name="l42_q4" value="0"> L'enzima succinato deidrogenasi catalizza la deidrogenazione stereospecifica del succinato a fumarato. Contiene un gruppo prostetico costituito dal NAD+ e la reazione genera NADH + H+</label>
+                <label><input type="radio" name="l42_q4" value="0"> L'enzima succinato deidrogenasi catalizza la deidrogenazione stereospecifica del succinato ad alfa-chetoglutarato. Contiene un gruppo prostetico costituito dal NAD+ e la reazione genera NADH + H+</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 043 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 043</h2>
+            <div class="question">
+                <p>01. Quali sono le principali caratteristiche dell'ubichinone? Individua l'affermazione errata.</p>
+                <label><input type="radio" name="l43_q1" value="0"> Può trovarsi in forma parzialmente ridotta, come radicale semichinonico.</label>
+                <label><input type="radio" name="l43_q1" value="0"> E' una molecola lipofila ed estremamente mobile.</label>
+                <label><input type="radio" name="l43_q1" value="1"> E' un coenzima ossidoriduttivo coinvolto nel ciclo di Krebs.</label>
+                <label><input type="radio" name="l43_q1" value="0"> Può trasportare elettroni da un complesso della catena di trasporto all'altro.</label>
+            </div>
+            <div class="question">
+                <p>02. Quale dei seguenti elementi fornisce direttamente l'energia necessaria a formare l'ATP nel mitocondrio?</p>
+                <label><input type="radio" name="l43_q2" value="0"> Ossidazione dell'acetil-CoA</label>
+                <label><input type="radio" name="l43_q2" value="1"> Un gradiente elettrochimico di protoni</label>
+                <label><input type="radio" name="l43_q2" value="0"> Trasferimento di elettroni nella catena di trasporto degli elettroni</label>
+                <label><input type="radio" name="l43_q2" value="0"> Ossidazione degli acidi grassi</label>
+            </div>
+            <div class="question">
+                <p>03. Quale ruolo ha l'ubichinone nella respirazione cellulare?</p>
+                <label><input type="radio" name="l43_q3" value="0"> Trasporta direttamente protoni dalla matrice mitocondriale allo spazio intermembrana per generare un gradiente protonico.</label>
+                <label><input type="radio" name="l43_q3" value="0"> regola il flusso di protoni attraverso il canale di flusso dell'ATP sintasi.</label>
+                <label><input type="radio" name="l43_q3" value="0"> Si lega all'enzima ATP sintasi attivandolo e permettendo la sintesi di ATP.</label>
+                <label><input type="radio" name="l43_q3" value="1"> Riceve elettroni riducendosi ed essendo una molecola mobile e liposolubile può diffondere nella membrana mitocondriale e trasportarli al successivo accettore di elettroni</label>
+            </div>
+            <div class="question">
+                <p>04. quale affermazione relativa all' Ubichinone è corretta</p>
+                <label><input type="radio" name="l43_q4" value="0"> si trova tra il Complesso I ed il Complesso III</label>
+                <label><input type="radio" name="l43_q4" value="0"> ha la funzione di ricevere atomi di idrogeno e donare elettroni al complesso successivo</label>
+                <label><input type="radio" name="l43_q4" value="0"> è il responsabile della separazione dei protoni (che vengono liberati nella matrice mitocondriale) dagli elettroni.</label>
+                <label><input type="radio" name="l43_q4" value="1"> tutte le affermazioni sono corrette</label>
+            </div>
+            <div class="question">
+                <p>05. Prima che l'acido piruvico entri nel ciclo di Krebs deve essere convertito in .....</p>
+                <label><input type="radio" name="l43_q5" value="0"> alfa-chetoglutarato</label>
+                <label><input type="radio" name="l43_q5" value="0"> Lattato</label>
+                <label><input type="radio" name="l43_q5" value="0"> Citrato</label>
+                <label><input type="radio" name="l43_q5" value="1"> Acetil CoA</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 044 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 044</h2>
+            <div class="question">
+                <p>01. L'enzima mitocondriale succinato deidrogenasi, è l'unico enzima del ciclo dell'acido citrico ancorato alla membrana mitocondriale interna... Questo enzima ha una duplice funzione...</p>
+                <label><input type="radio" name="l44_q1" value="0"> permette di regolare la permeabilità della membrana mitocondriale interna.</label>
+                <label><input type="radio" name="l44_q1" value="1"> riossida immediatamente il FAD trasferendo istantaneamente gli elettroni all'ubichinone ed immettendoli nella catena di trasporto degli elettroni.</label>
+                <label><input type="radio" name="l44_q1" value="0"> essendo esso ancorato alla membrana, localizza gli altri enzimi del ciclo dell'acido citrico in un punto specifico</label>
+                <label><input type="radio" name="l44_q1" value="0"> frutta l'energia prodotta dall'ossidazione del succinato per pompare protoni nello spazio intermembrana.</label>
+            </div>
+            <div class="question">
+                <p>02. Considerando la catena di trasporto degli elettroni, quale dei seguenti composti ha maggior tendenza ad accettare elettroni?</p>
+                <label><input type="radio" name="l44_q2" value="0"> Citocromo c</label>
+                <label><input type="radio" name="l44_q2" value="0"> Flavina adenina dinucleotide</label>
+                <label><input type="radio" name="l44_q2" value="1"> Ossigeno</label>
+                <label><input type="radio" name="l44_q2" value="0"> Coenzima Q</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 045 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 045</h2>
+            <div class="question">
+                <p>01. Quale molecola, importante intermedio metabolico viene prodotta ad ogni ciclo di beta-ossidazione di un acido grasso?</p>
+                <label><input type="radio" name="l45_q1" value="0"> Acil-CoA</label>
+                <label><input type="radio" name="l45_q1" value="0"> Aril-CoA</label>
+                <label><input type="radio" name="l45_q1" value="1"> Acetil-CoA</label>
+                <label><input type="radio" name="l45_q1" value="0"> Succinil-CoA</label>
+            </div>
+            <div class="question">
+                <p>02. La successione di eventi in grado di produrre la quantità maggiore di energia, mediante ossidazione degli acidi grassi, consiste nelle seguenti fasi:</p>
+                <label><input type="radio" name="l45_q2" value="0"> Nessuna delle risposte è corretta.</label>
+                <label><input type="radio" name="l45_q2" value="0"> beta-ossidazione degli acidi grassi - sintesi dei corpi chetonici a partire dall'acetil-CoA prodotto - esportazione dei corpi chetonici.</label>
+                <label><input type="radio" name="l45_q2" value="1"> beta-ossidazione degli acidi grassi - immissione dell'acetil-CoA prodotto nel ciclo dell'acido citrico - trasferimento degli elettroni prodotti alla catena respiratoria - produzione di ATP ad opera della ATP-sintasi</label>
+                <label><input type="radio" name="l45_q2" value="0"> beta-ossidazione degli acidi grassi - formazione di propionil-CoA...</label>
+            </div>
+            <div class="question">
+                <p>03. Alcuni acidi grassi non possono essere direttamente ossidati ma richiedono dei passaggi enzimatici aggiuntivi per la corretta e completa beta-ossidazione. Di quali acidi grassi si tratta?</p>
+                <label><input type="radio" name="l45_q3" value="0"> Acidi grassi a catena corta</label>
+                <label><input type="radio" name="l45_q3" value="0"> Acidi grassi con catena pari</label>
+                <label><input type="radio" name="l45_q3" value="0"> Acidi grassi saturi</label>
+                <label><input type="radio" name="l45_q3" value="1"> Acidi grassi mono e poliinsaturi</label>
+            </div>
+            <div class="question">
+                <p>04. La beta-ossidazione di acidi grassi con numero dispari di atomi di carbonio</p>
+                <label><input type="radio" name="l45_q4" value="0"> non richiede passaggi aggiuntivi rispetto alla beta-ossidazione di acidi grassi con numero pari.</label>
+                <label><input type="radio" name="l45_q4" value="0"> richiede l'intervento della enoil-CoA-isomerasi prima della beta-ossidazione.</label>
+                <label><input type="radio" name="l45_q4" value="1"> richiede altre reazioni per concludere la beta-ossidazione in quanto l'ultimo ciclo forma un propionil-CoA</label>
+                <label><input type="radio" name="l45_q4" value="0"> richiede lo stesso meccanismo di un trans-delta2-enoil-CoA.</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 046 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 046</h2>
+            <div class="question">
+                <p>01. Quale delle seguenti affermazioni descrive meglio il modo in cui l'organismo crea o elabora i corpi chetonici?</p>
+                <label><input type="radio" name="l46_q1" value="0"> Il cervello è il primo organo a utilizzare i corpi chetonici</label>
+                <label><input type="radio" name="l46_q1" value="0"> L'acetil-CoA viene convertito in acetoacetato, 3-idrossibutirrato o acetone...</label>
+                <label><input type="radio" name="l46_q1" value="1"> I corpi chetonici sono prodotti nei mitocondri delle cellule epatiche dopo un digiuno prolungato.</label>
+                <label><input type="radio" name="l46_q1" value="0"> I corpi chetonici sono prodotti nei perossisomi delle cellule epatiche durante i periodi di digiuno.</label>
+            </div>
+            <div class="question">
+                <p>02. Cosa si intende per "amminoacidi chetogenici"?</p>
+                <label><input type="radio" name="l46_q2" value="1"> Possono essere utilizzati per la biosintesi di corpi chetonici.</label>
+                <label><input type="radio" name="l46_q2" value="0"> Vengono sintetizzati partendo da corpi chetonici.</label>
+                <label><input type="radio" name="l46_q2" value="0"> Possono legare i corpi chetonici per favorire il loro trasporto.</label>
+                <label><input type="radio" name="l46_q2" value="0"> La loro catena laterale è sostituita con un corpo chetonico.</label>
+            </div>
+            <div class="question">
+                <p>03. Quali tra i seguenti amminoacidi sono "amminoacidi esclusivamente chetogenici"?</p>
+                <label><input type="radio" name="l46_q3" value="0"> Fenilalanina e Triptofano</label>
+                <label><input type="radio" name="l46_q3" value="0"> nessuna delle risposte è corretta</label>
+                <label><input type="radio" name="l46_q3" value="0"> Glicina</label>
+                <label><input type="radio" name="l46_q3" value="1"> Leucina e Lisina</label>
+            </div>
+            <div class="question">
+                <p>04. Cosa si intende per "amminoacidi chetogenici"? (ripetizione opzione)</p>
+                <label><input type="radio" name="l46_q4" value="1"> sono gli amminoacidi che possono essere convertiti ad acetil-CoA o acetoacetato</label>
+                <label><input type="radio" name="l46_q4" value="0"> sono gli amminoacidi che possono legare i corpi chetonici.</label>
+                <label><input type="radio" name="l46_q4" value="0"> sono gli amminoacidi che contengono un corpo chetonico nella catena laterale</label>
+                <label><input type="radio" name="l46_q4" value="0"> sono gli amminoacidi sintetizzati partendo da corpi chetonici</label>
+            </div>
+            <div class="question">
+                <p>05. I corpi chetonici</p>
+                <label><input type="radio" name="l46_q5" value="0"> sono due: acetone ed etanolo</label>
+                <label><input type="radio" name="l46_q5" value="0"> sono due: l'acido acetoacetico ed l'acido beta-idrossibutirrico</label>
+                <label><input type="radio" name="l46_q5" value="0"> sono esclusivamente i prodotti di ossidazione dell'acido beta-idrossibutirrico</label>
+                <label><input type="radio" name="l46_q5" value="1"> sono tre: acetone, acido acetoacetico acido beta-idrossibutirrico.</label>
+            </div>
+            <div class="question">
+                <p>06. Che ruolo svolge il coenzima A nel ciclo dell'acido citrico?</p>
+                <label><input type="radio" name="l46_q6" value="0"> Trasporta ioni idruro.</label>
+                <label><input type="radio" name="l46_q6" value="0"> È un trasportatore di elettroni.</label>
+                <label><input type="radio" name="l46_q6" value="0"> È un agente ossidante</label>
+                <label><input type="radio" name="l46_q6" value="1"> È un trasportatore di gruppi acilici.</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 047 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 047</h2>
+            <div class="question">
+                <p>01. Il glucagone è.....</p>
+                <label><input type="radio" name="l47_q1" value="0"> è un ormone ipoglicemizzante che promuove la glicogenogenesi</label>
+                <label><input type="radio" name="l47_q1" value="1"> è un ormone iperglicemizzante che promuove la gluconeogenesi e glicogenolisi</label>
+                <label><input type="radio" name="l47_q1" value="0"> è un ormone che attiva l’enzima glicogeno sintasi</label>
+                <label><input type="radio" name="l47_q1" value="0"> è un enzima che catalizza la sintesi del glucosio 1-fosfato</label>
+            </div>
+            <div class="question">
+                <p>02. Nelle reazioni di transamminazione, Il gruppo alfa-amminico di un amminoacido viene trasferito all’atomo di carbonio alfa dell’alfa-chetoglutarato... Quale è lo scopo biologico?</p>
+                <label><input type="radio" name="l47_q2" value="0"> Distaccare gruppi amminici dagli amminoacidi e liberarli nel sangue.</label>
+                <label><input type="radio" name="l47_q2" value="1"> La raccolta dei gruppi amminici derivanti da diversi tipi di amminoacidi, in un unico prodotto universale, l'amminoacido L-glutammato.</label>
+                <label><input type="radio" name="l47_q2" value="0"> Nessuna delle risposte è corretta.</label>
+                <label><input type="radio" name="l47_q2" value="0"> Trasferire gruppi amminici come gruppi prostetici su alcune proteine.</label>
+            </div>
+            <div class="question">
+                <p>03. Si può distinguere il glicogeno principalmente in glicogeno muscolare e glicogeno epatico. Quale è la funzione di un tipo rispetto all'altro?</p>
+                <label><input type="radio" name="l47_q3" value="0"> Il glicogeno muscolare serve per il muscolo. Quello epatico per le attività epatiche.</label>
+                <label><input type="radio" name="l47_q3" value="0"> Quello epatico non costituisce una vera riserva energetica.</label>
+                <label><input type="radio" name="l47_q3" value="1"> Il glicogeno muscolare costituisce riserva specifica per il muscolo. Quello epatico costituisce riserva per l'intero organismo, specialmente tessuti glucosio-dipendenti.</label>
+                <label><input type="radio" name="l47_q3" value="0"> Nessuna delle affermazioni è corretta.</label>
+            </div>
+            <div class="question">
+                <p>04. Per la sintesi del glicogeno, il glucosio deve essere convertito in</p>
+                <label><input type="radio" name="l47_q4" value="0"> Acido piruvico</label>
+                <label><input type="radio" name="l47_q4" value="0"> Sorbitolo</label>
+                <label><input type="radio" name="l47_q4" value="1"> UDP glucosio</label>
+                <label><input type="radio" name="l47_q4" value="0"> Acido glucuronico</label>
+            </div>
+            <div class="question">
+                <p>05. La glicogenina è .......</p>
+                <label><input type="radio" name="l47_q5" value="0"> Prodotto intermedio nella degradazione del glicogeno</label>
+                <label><input type="radio" name="l47_q5" value="0"> Un disaccoppiatore della fosforilazione ossidativa</label>
+                <label><input type="radio" name="l47_q5" value="0"> Un polimero delle molecole di glicogeno</label>
+                <label><input type="radio" name="l47_q5" value="1"> Una proteina che funge da primer per la sintesi del glicogeno</label>
+            </div>
+            <div class="question">
+                <p>06. Qual è l'effetto del glucagone sul metabolismo dei carboidrati?</p>
+                <label><input type="radio" name="l47_q6" value="0"> Stimola la glicolisi.</label>
+                <label><input type="radio" name="l47_q6" value="0"> Diminuisce i livelli di glucosio nel sangue.</label>
+                <label><input type="radio" name="l47_q6" value="0"> Inibisce la degradazione del glicogeno.</label>
+                <label><input type="radio" name="l47_q6" value="1"> Stimola la gluconeogenesi.</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 051 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 051</h2>
+            <div class="question">
+                <p>01. Durante la fermentazione alcolica, L’enzima alcol deidrogenasi,</p>
+                <label><input type="radio" name="l51_q1" value="0"> catalizza la reazione di decarbossilazione del piruvato con formazione di acetaldeide e rilascio di CO2.</label>
+                <label><input type="radio" name="l51_q1" value="0"> nessuna delle precedenti</label>
+                <label><input type="radio" name="l51_q1" value="0"> catalizza la reazione di decarbossilazione del piruvato che permette di rigenerare NAD+ e produrre etanolo.</label>
+                <label><input type="radio" name="l51_q1" value="1"> catalizza la reazione di riduzione della acetaldeide che permette di rigenerare NAD+ e produrre etanolo.</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 052 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 052</h2>
+            <div class="question">
+                <p>01. Quale è la funzione dei reagenti DTT e beta-mercaptoetanolo nel trattamento delle proteine?</p>
+                <label><input type="radio" name="l52_q1" value="0"> Inibitori delle fosfatasi</label>
+                <label><input type="radio" name="l52_q1" value="0"> Agenti ossidanti</label>
+                <label><input type="radio" name="l52_q1" value="0"> Detergenti non ionici</label>
+                <label><input type="radio" name="l52_q1" value="1"> Agenti riducenti</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 053 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 053</h2>
+            <div class="question">
+                <p>01. Generalmente, In che modo le proteine vengono separate nell'elettroforesi bidimensionale?</p>
+                <label><input type="radio" name="l53_q1" value="0"> Prima in base al punto isoelettrico e poi in base alla conformazione</label>
+                <label><input type="radio" name="l53_q1" value="0"> Prima in base al peso molecolare e poi in base al punto isoelettrico</label>
+                <label><input type="radio" name="l53_q1" value="0"> Prima in base al volume e poi in base al peso molecolare</label>
+                <label><input type="radio" name="l53_q1" value="1"> Prima in base al punto isoelettrico e poi in base al peso molecolare</label>
+            </div>
+            <div class="question">
+                <p>02. Quale è la funzione del sodio dodecilsolfato (SDS) nell'elettroforesi per le proteine?</p>
+                <label><input type="radio" name="l53_q2" value="1"> Conferisce carica negativa a tutte le proteine</label>
+                <label><input type="radio" name="l53_q2" value="0"> Agente ossidante</label>
+                <label><input type="radio" name="l53_q2" value="0"> Agente chelante</label>
+                <label><input type="radio" name="l53_q2" value="0"> Agente riducente</label>
+            </div>
+            <div class="question">
+                <p>03. Nell'elettroforesi SDS-PAGE, quali proteine migrano più velocemente verso il basso?</p>
+                <label><input type="radio" name="l53_q3" value="0"> Proteine con carica di superficie negativa</label>
+                <label><input type="radio" name="l53_q3" value="1"> Proteine a basso peso molecolare</label>
+                <label><input type="radio" name="l53_q3" value="0"> Proteine ad alto peso molecolare</label>
+                <label><input type="radio" name="l53_q3" value="0"> Proteine in condizioni zwitterioniche</label>
+            </div>
+            <div class="question">
+                <p>04. Il sodio dodecil solfato</p>
+                <label><input type="radio" name="l53_q4" value="0"> è un tensioattivo privo di carica</label>
+                <label><input type="radio" name="l53_q4" value="1"> è un detergente che causa la denaturazione delle proteine legandosi alle regioni idrofobe</label>
+                <label><input type="radio" name="l53_q4" value="0"> è un tensioattivo insolubile in acqua</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 100 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 100</h2>
+            <div class="question">
+                <p>01. La sintesi del glucosio a partire dagli amminoacidi è definita come</p>
+                <label><input type="radio" name="l100_q1" value="0"> Lipogenesi</label>
+                <label><input type="radio" name="l100_q1" value="1"> Gluconeogenesi</label>
+                <label><input type="radio" name="l100_q1" value="0"> Glicogenesi</label>
+                <label><input type="radio" name="l100_q1" value="0"> Glicolisi</label>
+            </div>
+            <div class="question">
+                <p>02. Quale delle seguenti affermazione sugli zimogeni è vera?</p>
+                <label><input type="radio" name="l100_q2" value="0"> Gli zimogeni sono inattivati da inibitori di natura proteica.</label>
+                <label><input type="radio" name="l100_q2" value="1"> Gli zimogeni sono enzimaticamente inattivi.</label>
+                <label><input type="radio" name="l100_q2" value="0"> Le proproteine sono un tipo di zimogeni</label>
+                <label><input type="radio" name="l100_q2" value="0"> Gli zimogeni scindono le proteasi.</label>
+            </div>
+            <div class="question">
+                <p>03. I tessuti formano acido lattico a partire dal glucosio. Questo fenomeno è definito</p>
+                <label><input type="radio" name="l100_q3" value="0"> Fosforilazione ossidativa</label>
+                <label><input type="radio" name="l100_q3" value="1"> Glicolisi anaerobica</label>
+                <label><input type="radio" name="l100_q3" value="0"> Ossidazione</label>
+                <label><input type="radio" name="l100_q3" value="0"> glicolisi aerobica</label>
+            </div>
+            <div class="question">
+                <p>04. La glicolisi è regolata da</p>
+                <label><input type="radio" name="l100_q4" value="1"> tutti gli enzimi descritti nelle altre risposte</label>
+                <label><input type="radio" name="l100_q4" value="0"> Esochinasi</label>
+                <label><input type="radio" name="l100_q4" value="0"> Piruvato chinasi</label>
+                <label><input type="radio" name="l100_q4" value="0"> Fosfofruttochinasi</label>
+            </div>
+            <div class="question">
+                <p>05. Il Glucosio Uridin-Difosfato (UDPG) è ....</p>
+                <label><input type="radio" name="l100_q5" value="0"> tutte le risposte sono corrette</label>
+                <label><input type="radio" name="l100_q5" value="1"> necessario per la biosintesi del glicogeno</label>
+                <label><input type="radio" name="l100_q5" value="0"> una riserva di gruppi fosfato ad alta energia</label>
+                <label><input type="radio" name="l100_q5" value="0"> un substrato per la catena di trasporto degli elettroni</label>
+            </div>
+            <div class="question">
+                <p>06. Nel glucosio l'orientamento dei gruppi -H e -OH attorno all'atomo di carbonio 5 adiacente al carbonio terminale dell'alcol primario determina ...</p>
+                <label><input type="radio" name="l100_q6" value="0"> La serie anomerica alfa o beta</label>
+                <label><input type="radio" name="l100_q6" value="1"> La serie D o L</label>
+                <label><input type="radio" name="l100_q6" value="0"> La serie Destrorotatoria o Levogira</label>
+                <label><input type="radio" name="l100_q6" value="0"> nessuna delle risposte è corretta</label>
+            </div>
+            <div class="question">
+                <p>07. i polisaccaridi sono .....</p>
+                <label><input type="radio" name="l100_q7" value="1"> polimeri</label>
+                <label><input type="radio" name="l100_q7" value="0"> proteine</label>
+                <label><input type="radio" name="l100_q7" value="0"> oli</label>
+                <label><input type="radio" name="l100_q7" value="0"> acidi</label>
+            </div>
+            <div class="question">
+                <p>08. Nel muscolo scheletrico in condizioni anaerobiche il glucosio è convertito in…</p>
+                <label><input type="radio" name="l100_q8" value="0"> glicogeno</label>
+                <label><input type="radio" name="l100_q8" value="0"> acetaldeide</label>
+                <label><input type="radio" name="l100_q8" value="1"> lattato</label>
+                <label><input type="radio" name="l100_q8" value="0"> acetil-CoA.</label>
+            </div>
+            <div class="question">
+                <p>09. Nell'inibizione retroattiva (a feedback)…</p>
+                <label><input type="radio" name="l100_q9" value="0"> un intermedio in una via metabolica inibisce uno degli enzimi precedenti</label>
+                <label><input type="radio" name="l100_q9" value="0"> il substrato iniziale inibisce uno degli enzimi</label>
+                <label><input type="radio" name="l100_q9" value="1"> il prodotto finale di una via metabolica inibisce uno degli enzimi della via.</label>
+                <label><input type="radio" name="l100_q9" value="0"> un enzima inibisce uno degli enzimi che lo precedono</label>
+            </div>
+            <div class="question">
+                <p>10. Quale delle seguenti affermazioni sulla fosforilazione delle proteine è vera?</p>
+                <label><input type="radio" name="l100_q10" value="0"> La specificità è conferita unicamente dall'amminoacido da fosforilare.</label>
+                <label><input type="radio" name="l100_q10" value="0"> La fosforilazione attiva sempre gli enzimi.</label>
+                <label><input type="radio" name="l100_q10" value="1"> Le proteine vengono in genere fosforilate in corrispondenza di amminoacidi le cui catene laterali contengono un gruppo ossidrilico.</label>
+                <label><input type="radio" name="l100_q10" value="0"> La fosforilazione è catalizzata dalle fosfatasi.</label>
+            </div>
+            <div class="question">
+                <p>11. Quale tipo di modificazione covalente viene catalizzato dalle chinasi?</p>
+                <label><input type="radio" name="l100_q11" value="1"> La fosforilazione.</label>
+                <label><input type="radio" name="l100_q11" value="0"> L'acetil-azione.</label>
+                <label><input type="radio" name="l100_q11" value="0"> L'ubiquitinazione.</label>
+                <label><input type="radio" name="l100_q11" value="0"> La defosforilazione.</label>
+            </div>
+            <div class="question">
+                <p>12. Quale delle seguenti affermazioni sugli isozimi (o isoenzimi) è vera?</p>
+                <label><input type="radio" name="l100_q12" value="0"> Non possono essere espressi nella stessa cellula.</label>
+                <label><input type="radio" name="l100_q12" value="1"> Catalizzano la stessa reazione.</label>
+                <label><input type="radio" name="l100_q12" value="0"> Hanno la stessa sequenza amminoacidica.</label>
+                <label><input type="radio" name="l100_q12" value="0"> Hanno le stesse proprietà cinetiche.</label>
+            </div>
+            <div class="question">
+                <p>13. Una chinasi realizza il trasferimento di un gruppo fosforico.</p>
+                <label><input type="radio" name="l100_q13" value="1"> nella fosforilazione di una grande varietà di proteine.</label>
+                <label><input type="radio" name="l100_q13" value="0"> In tutte le reazioni menzionate</label>
+                <label><input type="radio" name="l100_q13" value="0"> nella degradazione di farmaci</label>
+                <label><input type="radio" name="l100_q13" value="0"> nella degradazione di enzimi ad aminoacidi liberi.</label>
+            </div>
+            <div class="question">
+                <p>14. Nel ciclo di Krebs, la formazione del citrato a partire dall'ossal-acetato e dall'acetil CoA è catalizzata dalla citrato sintasi ed è una reazione di</p>
+                <label><input type="radio" name="l100_q14" value="1"> Condensazione</label>
+                <label><input type="radio" name="l100_q14" value="0"> Ossidazione</label>
+                <label><input type="radio" name="l100_q14" value="0"> Idrolisi</label>
+                <label><input type="radio" name="l100_q14" value="0"> Riduzione</label>
+            </div>
+            <div class="question">
+                <p>15. Il colesterolo è il precursore per la biosintesi di</p>
+                <label><input type="radio" name="l100_q15" value="0"> prostaglandine</label>
+                <label><input type="radio" name="l100_q15" value="0"> acidi grassi</label>
+                <label><input type="radio" name="l100_q15" value="0"> sfingomielina</label>
+                <label><input type="radio" name="l100_q15" value="1"> acidi biliari</label>
+            </div>
+            <div class="question">
+                <p>16. La carnitina è necessaria per il trasporto di</p>
+                <label><input type="radio" name="l100_q16" value="0"> Trigliceridi fuori dal fegato</label>
+                <label><input type="radio" name="l100_q16" value="1"> acidi grassi a catena lunga nei mitocondri</label>
+                <label><input type="radio" name="l100_q16" value="0"> Trigliceridi nei mitocondri</label>
+                <label><input type="radio" name="l100_q16" value="0"> acidi grassi a catena corta nei mitocondri</label>
+            </div>
+            <div class="question">
+                <p>17. L'ossidazione degli acidi grassi avviene</p>
+                <label><input type="radio" name="l100_q17" value="0"> Sulla membrana mitocondriale interna</label>
+                <label><input type="radio" name="l100_q17" value="0"> Nel citosol</label>
+                <label><input type="radio" name="l100_q17" value="1"> Nella matrice dei mitocondri</label>
+                <label><input type="radio" name="l100_q17" value="0"> Nei microsomi</label>
+            </div>
+            <div class="question">
+                <p>18. Gli enzimi della beta-ossidazione si trovano ...</p>
+                <label><input type="radio" name="l100_q18" value="0"> nel nucleo</label>
+                <label><input type="radio" name="l100_q18" value="0"> nel citosol</label>
+                <label><input type="radio" name="l100_q18" value="0"> nell'apparato di Golgi</label>
+                <label><input type="radio" name="l100_q18" value="1"> nei mitocondri</label>
+            </div>
+            <div class="question">
+                <p>19. L'importanza dei fosfolipidi come costituenti della membrana cellulare è dovuta al fatto che essi possiedono</p>
+                <label><input type="radio" name="l100_q19" value="1"> gruppi sia polari che non polari</label>
+                <label><input type="radio" name="l100_q19" value="0"> Acido fosforico</label>
+                <label><input type="radio" name="l100_q19" value="0"> Acidi grassi</label>
+                <label><input type="radio" name="l100_q19" value="0"> glicerolo</label>
+            </div>
+            <div class="question">
+                <p>20. Quando l'apporto di O2 è insufficiente, il piruvato viene convertito in</p>
+                <label><input type="radio" name="l100_q20" value="1"> Lattato</label>
+                <label><input type="radio" name="l100_q20" value="0"> Fosfopiruvato</label>
+                <label><input type="radio" name="l100_q20" value="0"> Acetil CoA</label>
+                <label><input type="radio" name="l100_q20" value="0"> Alanina</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 101 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 101</h2>
+            <div class="question">
+                <p>01. A un pH inferiore al punto isoelettrico, un amminoacido esiste come</p>
+                <label><input type="radio" name="l101_q1" value="0"> Anione</label>
+                <label><input type="radio" name="l101_q1" value="0"> Zwitterione</label>
+                <label><input type="radio" name="l101_q1" value="0"> Molecola indissociata</label>
+                <label><input type="radio" name="l101_q1" value="1"> Catione</label>
+            </div>
+            <div class="question">
+                <p>02. La denaturazione di una proteina consiste:</p>
+                <label><input type="radio" name="l101_q2" value="0"> nella sostituzione di residui idrofilici con idrofobici</label>
+                <label><input type="radio" name="l101_q2" value="0"> nella modifica della sua struttura primaria</label>
+                <label><input type="radio" name="l101_q2" value="0"> nella sostituzione di aminoacidi nel sito attivo</label>
+                <label><input type="radio" name="l101_q2" value="1"> nell’alterazione della sua struttura secondaria e terziaria</label>
+            </div>
+            <div class="question">
+                <p>03. Quale delle seguenti considerazioni generali sugli enzimi è FALSA?</p>
+                <label><input type="radio" name="l101_q3" value="1"> Sono tutti proteine a struttura quaternaria</label>
+                <label><input type="radio" name="l101_q3" value="0"> Esistono enzimi costitutivi ed enzimi induttivi</label>
+                <label><input type="radio" name="l101_q3" value="0"> La Km è la concentrazione di substrato alla quale la reazione raggiunge la velocità semimassima</label>
+                <label><input type="radio" name="l101_q3" value="0"> Non modificano la costante di equilibrio della reazione</label>
+            </div>
+            <div class="question">
+                <p>04. Quale tipo di acido nucleico forma un legame ad alta energia con un aminoacido durante la sintesi proteica?</p>
+                <label><input type="radio" name="l101_q4" value="1"> RNA di trasporto</label>
+                <label><input type="radio" name="l101_q4" value="0"> RNA ribosomiale</label>
+                <label><input type="radio" name="l101_q4" value="0"> DNA nucleare</label>
+                <label><input type="radio" name="l101_q4" value="0"> DNA mitocondriale</label>
+            </div>
+            <div class="question">
+                <p>05. Nella struttura delle proteine l'alfa-elica e i foglietti beta pieghettati sono esempi di</p>
+                <label><input type="radio" name="l101_q5" value="0"> Struttura terziaria</label>
+                <label><input type="radio" name="l101_q5" value="1"> Struttura secondaria</label>
+                <label><input type="radio" name="l101_q5" value="0"> Struttura quaternaria</label>
+                <label><input type="radio" name="l101_q5" value="0"> Struttura primaria</label>
+            </div>
+            <div class="question">
+                <p>06. Il pH al quale un enzima ha la massima attività è noto come</p>
+                <label><input type="radio" name="l101_q6" value="1"> optimum di pH</label>
+                <label><input type="radio" name="l101_q6" value="0"> pH attivo</label>
+                <label><input type="radio" name="l101_q6" value="0"> punto isoelettrico</label>
+                <label><input type="radio" name="l101_q6" value="0"> nessuna delle risposte è corretta</label>
+            </div>
+            <div class="question">
+                <p>07. L'alfa-elica è formata da</p>
+                <label><input type="radio" name="l101_q7" value="0"> Legami elettrostatici</label>
+                <label><input type="radio" name="l101_q7" value="1"> Legami idrogeno</label>
+                <label><input type="radio" name="l101_q7" value="0"> Legami idrofobici</label>
+                <label><input type="radio" name="l101_q7" value="0"> Legami disolfuro</label>
+            </div>
+            <div class="question">
+                <p>08. Il trasporto di elettroni, che si verifica nella membrana interna mitocondriale e porta alla sintesi di ATP, avviene secondo quale dei seguenti processi?</p>
+                <label><input type="radio" name="l101_q8" value="0"> Pompando protoni ed elettroni nello spazio intermembrana</label>
+                <label><input type="radio" name="l101_q8" value="0"> Pompando elettroni dallo spazio intermembrana alla matrice</label>
+                <label><input type="radio" name="l101_q8" value="1"> Pompando protoni dalla matrice mitocondriale allo spazio intermembrana</label>
+                <label><input type="radio" name="l101_q8" value="0"> Pompando elettroni dalla matrice allo spazio intermembrana</label>
+            </div>
+            <div class="question">
+                <p>09. Quale tra i seguenti amminoacidi contiene zolfo?</p>
+                <label><input type="radio" name="l101_q9" value="0"> Leucina</label>
+                <label><input type="radio" name="l101_q9" value="1"> Metionina</label>
+                <label><input type="radio" name="l101_q9" value="0"> Valina</label>
+                <label><input type="radio" name="l101_q9" value="0"> Asparagina</label>
+            </div>
+            <div class="question">
+                <p>10. Le proteine contengono</p>
+                <label><input type="radio" name="l101_q10" value="0"> Solo amminoacidi della seria D</label>
+                <label><input type="radio" name="l101_q10" value="0"> tutte le risposte sono corrette</label>
+                <label><input type="radio" name="l101_q10" value="0"> Amminoacidi della serie D e della serie L</label>
+                <label><input type="radio" name="l101_q10" value="1"> Solo L-alfa-amminoacidi</label>
+            </div>
+            <div class="question">
+                <p>11. Identificare nel seguente elenco il legame chimico responsabile della formazione della struttura primaria delle proteine:</p>
+                <label><input type="radio" name="l101_q11" value="1"> legame peptidico</label>
+                <label><input type="radio" name="l101_q11" value="0"> legame disolfuro</label>
+                <label><input type="radio" name="l101_q11" value="0"> legame fosfodiesterico</label>
+                <label><input type="radio" name="l101_q11" value="0"> legame idrofobico</label>
+            </div>
+            <div class="question">
+                <p>12. In una molecola di ATP sono presenti:</p>
+                <label><input type="radio" name="l101_q12" value="1"> due legami ad alta energia</label>
+                <label><input type="radio" name="l101_q12" value="0"> un legame ad alta energia</label>
+                <label><input type="radio" name="l101_q12" value="0"> un solo legame pirofosforico</label>
+                <label><input type="radio" name="l101_q12" value="0"> tre legami ad alta energia</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 102 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 102</h2>
+            <div class="question">
+                <p>01. Quale delle seguenti affermazioni riguardo la molecola dell'acqua è CORRETTA?</p>
+                <label><input type="radio" name="l102_q1" value="1"> tutte le affermazioni sono corrette</label>
+                <label><input type="radio" name="l102_q1" value="0"> L'ossigeno ha parziale carica negativa mentre gli idrogeni hanno parziale carica positiva</label>
+                <label><input type="radio" name="l102_q1" value="0"> L'ossigeno è più elettronegativo dell'idrogeno e quindi il legame è polarizzato</label>
+                <label><input type="radio" name="l102_q1" value="0"> L'acqua è formata da due atomi di idrogeno ed un atomo di ossigeno legati covalentemente</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 103 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 103</h2>
+            <div class="question">
+                <p>01. Quale affermazione riguardo alle molecole idrofobiche è CORRETTA?</p>
+                <label><input type="radio" name="l103_q1" value="0"> Si tratta sicuramente di molecole apolari.</label>
+                <label><input type="radio" name="l103_q1" value="0"> Le molecole idrofobiche non possono essere disciolte in acqua.</label>
+                <label><input type="radio" name="l103_q1" value="1"> tutte le affermazioni sono corrette</label>
+                <label><input type="radio" name="l103_q1" value="0"> Le molecole idrofobiche possono essere solubilizzate in acqua utilizzando dei detergenti anfipatici.</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 106 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 106</h2>
+            <div class="question">
+                <p>01. Le biomolecole sono spesso molecole complesse in cui sono presenti uno o più centri chiralici. Che rilevanza ha la stereoisomeria per queste molecole?</p>
+                <label><input type="radio" name="l106_q1" value="0"> La stereisomeria è estremamente importante per l'interazione tra farmaco e recettore.</label>
+                <label><input type="radio" name="l106_q1" value="0"> Le biomolecole vengono sempre sintetizzate nella stessa forma stereoisomerica</label>
+                <label><input type="radio" name="l106_q1" value="1"> tutte le risposte sono corrette</label>
+                <label><input type="radio" name="l106_q1" value="0"> In alcune molecole i due stereoisomeri hanno effetti differenti o opposti</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 119 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 119</h2>
+            <div class="question">
+                <p>01. Il recettore per l'insulina:</p>
+                <label><input type="radio" name="l119_q1" value="0"> è una proteina della matrice mitocondriale</label>
+                <label><input type="radio" name="l119_q1" value="1"> è un recettore transmembrana appartenente alla famiglia dei recettori tirosin-chinasici ed è attivato dall'insulina.</label>
+                <label><input type="radio" name="l119_q1" value="0"> è una proteina fibrosa</label>
+                <label><input type="radio" name="l119_q1" value="0"> è una proteina globulare</label>
+            </div>
+            <div class="question">
+                <p>02. Quale caratteristica fondamentale hanno le proteine integrali di membrana localizzate principalmente a livello della membrana citoplasmatica?</p>
+                <label><input type="radio" name="l119_q2" value="1"> possiedono domini transmembrana costituiti da amminoacidi con catene laterali apolari</label>
+                <label><input type="radio" name="l119_q2" value="0"> possiedono domini transmembrana costituiti da amminoacidi polari</label>
+                <label><input type="radio" name="l119_q2" value="0"> possiedono domini transmembrana costituiti da catene basiche</label>
+                <label><input type="radio" name="l119_q2" value="0"> possiedono domini transmembrana costituiti da catene acide</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 142 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 142</h2>
+            <div class="question">
+                <p>01. Per quale motivo il ciclo dell'acido citrico viene appunto definito "ciclo"?</p>
+                <label><input type="radio" name="l142_q1" value="0"> nessuna delle risposte precedenti è corretta</label>
+                <label><input type="radio" name="l142_q1" value="0"> Perchè l'attivazione del ciclo ha un andamento ciclico durante la giornata</label>
+                <label><input type="radio" name="l142_q1" value="1"> Perchè il prodotto finale ottenuto dall'ultima tappa viene reintrodotto nella prima reazione (condensazione) permettendo un nuovo giro.</label>
+                <label><input type="radio" name="l142_q1" value="0"> Perchè il prodotto finale è una molecola ciclica.</label>
+            </div>
+        </div>
+
+        <!-- LEZIONE 145 -->
+        <div class="lesson-section">
+            <h2 class="lesson-title">Lezione 145</h2>
+            <div class="question">
+                <p>01. Quale intermedio metabolico viene prodotta ad ogni ciclo di beta-ossidazione di un acido grasso?</p>
+                <label><input type="radio" name="l145_q1" value="1"> Acetil-CoA</label>
+                <label><input type="radio" name="l145_q1" value="0"> Acil-CoA</label>
+                <label><input type="radio" name="l145_q1" value="0"> succinil-CoA</label>
+                <label><input type="radio" name="l145_q1" value="0"> Aril-CoA</label>
+            </div>
+            <div class="question">
+                <p>02. Per quale motivo la carnitina, considerata "brucia grassi" ed utilizzata come integratore, è importante nel metabolismo dei lipidi?</p>
+                <label><input type="radio" name="l145_q2" value="0"> Si lega ai lipidi rendendoli polari e impedisce l'attraversamento</label>
+                <label><input type="radio" name="l145_q2" value="0"> Attiva le lipasi cellulari</label>
+                <label><input type="radio" name="l145_q2" value="0"> Costituisce il gruppo prostetico delle lipoproteine</label>
+                <label><input type="radio" name="l145_q2" value="1"> Permette il trasporto dei precursori del catabolismo lipidico all'interno del mitocondrio mediante un sistema a navetta.</label>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>
