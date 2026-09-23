@@ -1,1 +1,922 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulatore Quiz - Biochimica (eCampus)</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #2ecc71;
+            --bg-color: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: var(--primary-color);
+            text-align: center;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .lesson-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-align: center;
+        }
+        .lesson-btn:hover {
+            background-color: #2980b9;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .question-card {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .options label {
+            display: block;
+            padding: 10px;
+            margin: 8px 0;
+            background: #f1f2f6;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .options label:hover {
+            background: #dfe4ea;
+        }
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .btn:hover {
+            background-color: #34495e;
+        }
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .correct { background-color: #d4edda; color: #155724; }
+        .incorrect { background-color: #f8d7da; color: #721c24; }
+        .quiz-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 15px auto;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
 
+<div class="container" id="app">
+    <!-- MENU PRINCIPALE -->
+    <div id="main-menu">
+        <h1>Simulatore Esame di Biochimica</h1>
+        <h2>Scienze Biologiche - Prof. Cautela Domenico (eCampus)</h2>
+        <p style="text-align: center; color: #666;">Seleziona la lezione che desideri esercitare:</p>
+        
+        <div class="menu-grid">
+            <button class="lesson-btn" onclick="loadLesson(2)">Lezione 2: Legami e Stechiometria</button>
+            <button class="lesson-btn" onclick="loadLesson(3)">Lezione 3: Termodinamica e Cinetica</button>
+            <button class="lesson-btn" onclick="loadLesson(4)">Lezione 4: Tavola Periodica e Acidi</button>
+            <button class="lesson-btn" onclick="loadLesson(5)">Lezione 5: Orbitali e pH</button>
+            <button class="lesson-btn" onclick="loadLesson(6)">Lezione 6: Legami Chimici e Soluzioni</button>
+            <button class="lesson-btn" onclick="loadLesson(7)">Lezione 7: Composti Organici e Alcoli</button>
+            <button class="lesson-btn" onclick="loadLesson(8)">Lezione 8: Unità di Misura e Notazione</button>
+            <button class="lesson-btn" onclick="loadLesson(9)">Lezione 9: Amminoacidi e Immagini</button>
+            <button class="lesson-btn" onclick="loadLesson(10)">Lezione 10: Struttura delle Proteine</button>
+        </div>
+    </div>
+
+    <!-- AREA QUIZ -->
+    <div id="quiz-area" class="hidden">
+        <a class="back-link" onclick="goHome()">← Torna al Menu Principale</a>
+        <h2 id="lesson-title">Titolo Lezione</h2>
+        <div id="question-container"></div>
+        <button id="next-btn" class="btn hidden" onclick="nextQuestion()">Prossima Domanda</button>
+    </div>
+</div>
+
+<script>
+    const databaseLezioni = {
+        2: {
+            title: "Lezione 2: Legami e Stechiometria",
+            questions: [
+                {
+                    q: "Quale di queste affermazioni riguardo al legame covalente è FALSA?",
+                    options: [
+                        "Il legame covalente tra due atomi di idrogeno è polare.",
+                        "Il legame covalente tra due atomi diversi è un legame covalente polare",
+                        "Il legame covalente polare è caratterizzato da un decentramento degli elettroni di legame verso l'atomo più elettronegativo.",
+                        "Il legame covalente tra due atomi di carbonio è un legame covalente puro"
+                    ],
+                    correct: 0,
+                    explanation: "Il legame tra due atomi di idrogeno uguali (H-H) è apolare (puro), non polare."
+                },
+                {
+                    q: "In una mole di ossigeno molecolare sono contenuti:",
+                    options: [
+                        "6,023 × 10^23 grammi di ossigeno.",
+                        "2 atomi di ossigeno.",
+                        "2 grammi di ossigeno.",
+                        "6,023 × 10^23 molecole di ossigeno."
+                    ],
+                    correct: 3,
+                    explanation: "Una mole di qualsiasi sostanza contiene un numero di Avogadro (6,023 × 10^23) di entità elementari (molecole nel caso dell'ossigeno molecolare O2)."
+                },
+                {
+                    q: "Un'equazione chimica è…",
+                    options: [
+                        "un processo in cui alcune sostanze si trasformano in altre sostanze mediante combinazione degli atomi.",
+                        "una relazione stechiometrica tra sostanze non necessariamente identiche.",
+                        "una relazione matematica tra variabili chimiche equivalenti.",
+                        "una rappresentazione simbolica di una trasformazione di alcune sostanze (reagenti) in altre sostanze (prodotti)."
+                    ],
+                    correct: 3,
+                    explanation: "L'equazione chimica è la rappresentazione simbolica di una reazione tramite reagenti e prodotti."
+                },
+                {
+                    q: "Quale di queste affermazioni riguardo al legame covalente è FALSA?",
+                    options: [
+                        "Nel legame covalente polare gli elettroni di legame vengono attratti dall'atomo con più elettronegatività",
+                        "I legame covalente è un legame chimico in cui due atomi mettono in comune delle coppie di elettroni",
+                        "Il legame covalente è di due tipi: puro (quando gli atomi sono uguali) e polare (quando gli atomi sono diversi)",
+                        "In determinate condizioni, il legame covalente polare può coinvolgere atomi uguali quando formano un dipolo molecolare permanente..."
+                    ],
+                    correct: 3,
+                    explanation: "Il legame covalente tra atomi identici è per definizione apolare/puro."
+                }
+            ]
+        },
+        3: {
+            title: "Lezione 3: Termodinamica e Cinetica",
+            questions: [
+                {
+                    q: "La variazione di energia libera (ΔG) di una reazione biochimica è",
+                    options: [
+                        "Può essere calcolata solo quando i reagenti e i prodotti sono presenti a concentrazioni pari a 1 mol/l",
+                        "tutte le affermazioni sono errate",
+                        "È uguale a zero all'equilibrio",
+                        "è direttamente proporzionale alla variazione di energia libera standard"
+                    ],
+                    correct: 2,
+                    explanation: "All'equilibrio chimico, la variazione di energia libera ΔG è pari a zero."
+                },
+                {
+                    q: "Quale tra le seguenti affermazioni è corretta?",
+                    options: [
+                        "Le reazioni di ossidoriduzione avvengono solamente in ambiente neutro.",
+                        "Le reazioni di ossidoriduzione si verificano ogniqualvolta è presente una specie riducente.",
+                        "Le reazioni di ossidoriduzione comportano il trasferimento di elettroni.",
+                        "Le reazioni di ossidoriduzione comportano il trasferimento di protoni."
+                    ],
+                    correct: 2,
+                    explanation: "Le redox implicano sempre il trasferimento di elettroni tra specie chimiche."
+                },
+                {
+                    q: "Quale tra le seguenti affermazioni è corretta?",
+                    options: [
+                        "La riduzione comporta un acquisto di elettroni.",
+                        "La riduzione è una reazione che avviene solo in assenza di ossigeno.",
+                        "La riduzione comporta una perdita di elettroni.",
+                        "La riduzione è una reazione che avviene solo in presenza di idrogeno."
+                    ],
+                    correct: 0,
+                    explanation: "Ridurre significa acquisire elettroni (riduzione del numero di ossidazione)."
+                },
+                {
+                    q: "Una reazione si dice all'equilibrio quando:",
+                    options: [
+                        "l'energia di attivazione della reazione diretta è uguale all'energia di attivazione della reazione inversa.",
+                        "le concentrazioni dei prodotti sono uguali a quelle dei reagenti",
+                        "la costante cinetica della reazione diretta è uguale alla costante cinetica della reazione inversa",
+                        "la velocità della reazione diretta è uguale alla velocità della reazione inversa"
+                    ],
+                    correct: 3,
+                    explanation: "All'equilibrio dinamico, la velocità della reazione diretta eguaglia quella inversa."
+                },
+                {
+                    q: "Una reazione si dice reversibile se:",
+                    options: [
+                        "i prodotti e i reagenti si interconvertono.",
+                        "non si verifica alcun cambiamento tra reagenti e prodotti.",
+                        "i prodotti sono più reattivi dei reagenti.",
+                        "le concentrazioni dei prodotti sono costanti mentre variano quelle dei reagenti."
+                    ],
+                    correct: 0,
+                    explanation: "Una reazione reversibile permette l'interconversione tra reagenti e prodotti in entrambe le direzioni."
+                },
+                {
+                    q: "I catalizzatori sono sostanze che:",
+                    options: [
+                        "aumentano la quantità di prodotti che si forma a seguito della reazione.",
+                        "rendono spontanea una reazione che per sua natura non lo è.",
+                        "abbassano l'energia di attivazione e aumentano la velocità delle reazioni",
+                        "non modificano l'energia di attivazione di una reazione"
+                    ],
+                    correct: 2,
+                    explanation: "I catalizzatori accelerano le reazioni abbassando la soglia dell'energia di attivazione."
+                },
+                {
+                    q: "Per una reazione chimica del tipo A + B → C, la velocità di reazione è definita come:",
+                    options: [
+                        "la variazione della concentrazione dei reagenti all'equilibrio.",
+                        "la concentrazione di C al tempo di fine reazione",
+                        "la diminuzione della concentrazione di C nell'unità di tempo.",
+                        "la diminuzione della concentrazione di A o di B nell'unità tempo."
+                    ],
+                    correct: 3,
+                    explanation: "La velocità di reazione misura la diminuzione dei reagenti (o l'aumento dei prodotti) nell'unità di tempo."
+                },
+                {
+                    q: "L'energia di attivazione di una reazione chimica indica:",
+                    options: [
+                        "l'energia del sistema quando la reazione è avanzata del 50%.",
+                        "la barriera energetica che separa i reagenti dal complesso attivato.",
+                        "la differenza di energia tra i prodotti e i reagenti.",
+                        "l'energia media dei prodotti e dei reagenti."
+                    ],
+                    correct: 1,
+                    explanation: "L'energia di attivazione è la barriera energetica da superare per avviare la trasformazione."
+                },
+                {
+                    q: "Una reazione non spontanea:",
+                    options: [
+                        "non può mai verificarsi.",
+                        "può verificarsi sempre.",
+                        "può verificarsi se accoppiata a processi spontanei che liberano una quantità sufficiente di energia.",
+                        "è esoergonica."
+                    ],
+                    correct: 2,
+                    explanation: "Le reazioni non spontanee (endergoniche) avvengono se accoppiate a processi esoergonici favorevoli."
+                }
+            ]
+        },
+        4: {
+            title: "Lezione 4: Tavola Periodica e Acidi",
+            questions: [
+                {
+                    q: "Quali tra i seguenti elementi presentano maggiori somiglianze nelle caratteristiche fisiche e chimiche?",
+                    options: ["Cl e F.", "Mg e Cl.", "Na e F.", "S e Mg."],
+                    correct: 0,
+                    explanation: "Cloro e fluoro appartengono allo stesso gruppo (alogeni) e condividono proprietà chimiche simili."
+                },
+                {
+                    q: "Un acido può essere definito come:",
+                    options: [
+                        "una sostanza che libera idrogeno atomico.",
+                        "un composto che aumenta la concentrazione degli ioni OH– in soluzione acquosa.",
+                        "un composto che contiene atomi di idrogeno.",
+                        "un composto che aumenta la concentrazione degli ioni H3O+ in soluzione acquosa."
+                    ],
+                    correct: 3,
+                    explanation: "Secondo Arrhenius, un acido rilascia ioni idronio (H3O+) in acqua."
+                },
+                {
+                    q: "Un atomo di carbonio è asimmetrico quando:",
+                    options: [
+                        "è ibridato sp3 e reca quattro sostituenti o gruppi tra loro tutti differenti.",
+                        "forma un doppio legame.",
+                        "appartiene a una molecola dotata di un piano di simmetria.",
+                        "è legato ad altri quattro atomi di carbonio."
+                    ],
+                    correct: 0,
+                    explanation: "Un carbonio asimmetrico (chirale) è legato a quattro gruppi chimici differenti."
+                },
+                {
+                    q: "Quale tra i seguenti è l'elemento più abbondante sulla crosta terrestre?",
+                    options: ["Zolfo", "Ossigeno", "Silicio", "Idrogeno"],
+                    correct: 1,
+                    explanation: "L'ossigeno è l'elemento più abbondante nella crosta terrestre."
+                },
+                {
+                    q: "Gli elementi del primo e del secondo gruppo della tavola periodica sono rispettivamente:",
+                    options: [
+                        "metalli alcalini e alcalino-terrosi.",
+                        "metalli nobili e metalli comuni.",
+                        "metalli alcalini e metalli di transizione.",
+                        "gas nobili e alogeni."
+                    ],
+                    correct: 0,
+                    explanation: "Il Gruppo 1 è costituito dai metalli alcalini, il Gruppo 2 dagli alcalino-terrosi."
+                },
+                {
+                    q: "Gli elementi appartenenti allo stesso gruppo della tavola periodica hanno in comune:",
+                    options: [
+                        "il numero degli elettroni dello strato più esterno.",
+                        "la valenza",
+                        "il numero di massa.",
+                        "la configurazione elettronica."
+                    ],
+                    correct: 0,
+                    explanation: "Gli elementi dello stesso gruppo hanno lo stesso numero di elettroni di valenza."
+                },
+                {
+                    q: "Ogni periodo della tavola periodica, a eccezione del primo, …",
+                    options: [
+                        "inizia con un metallo alcalino e termina con un gas nobile.",
+                        "inizia con un metallo alcalino-terroso e termina con un alogeno.",
+                        "inizia con un gas nobile e termina con un metallo alcalino.",
+                        "inizia con un alogeno e termina con un metallo alcalino."
+                    ],
+                    correct: 0,
+                    explanation: "I periodi iniziano con un metallo alcalino e si chiudono con un gas nobile."
+                },
+                {
+                    q: "Indica i nomi dei seguenti elementi: Na, Ca, B, Br",
+                    options: [
+                        "Sodio, Calcio, Boro, Bromo",
+                        "Sodio, Cloro, Bromo, Bario",
+                        "Potassio, Magnesio, Bromo, Cloro",
+                        "Sodio, Cadmio, Bromo, Bario"
+                    ],
+                    correct: 0,
+                    explanation: "Na = Sodio, Ca = Calcio, B = Boro, Br = Bromo."
+                }
+            ]
+        },
+        5: {
+            title: "Lezione 5: Orbitali e pH",
+            questions: [
+                {
+                    q: "L'orbitale ibrido sp2 forma un angolo di legame di",
+                    options: ["120°", "109°", "180°", "90°"],
+                    correct: 0,
+                    explanation: "L'ibridazione sp2 determina una geometria planare con angoli di 120°."
+                },
+                {
+                    q: "II bilancio energetico nei sistemi biologici è misurato in:",
+                    options: ["°K", "cal", "ampere", "watt"],
+                    correct: 1,
+                    explanation: "L'energia nei sistemi biologici viene comunemente espressa in calorie o joule."
+                },
+                {
+                    q: "Il numero quantico principale n può assumere tutti i valori interi...",
+                    options: ["+1/2 e -1/2", "negativi da 1 fino a infinito", "positivi da 1 fino a infinito", "frazionari da 1 fino a infinito"],
+                    correct: 2,
+                    explanation: "Il numero quantico principale n parte da 1 ed è un numero intero positivo."
+                },
+                {
+                    q: "Una soluzione che presenta pH = 8.4 si deve definire:",
+                    options: ["debolmente acida", "acida", "neutra", "basica"],
+                    correct: 3,
+                    explanation: "Un valore di pH superiore a 7 indica una soluzione alcalina o basica."
+                },
+                {
+                    q: "Quale carica ha un sistema formato da 7 protoni, 7 neutroni e 6 elettroni?",
+                    options: ["-1", "6", "1", "-6"],
+                    correct: 2,
+                    explanation: "7 protoni (+7) e 6 elettroni (-6) lasciano una carica netta positiva pari a +1."
+                }
+            ]
+        },
+        6: {
+            title: "Lezione 6: Legami Chimici e Soluzioni",
+            questions: [
+                {
+                    q: "Il legame ionico si forma:",
+                    options: [
+                        "solo tra atomi dello stesso elemento.",
+                        "tra atomi con bassa differenza di elettronegatività.",
+                        "per attrazione elettrostatica tra ioni della stessa carica.",
+                        "per attrazione elettrostatica tra ioni di carica opposta."
+                    ],
+                    correct: 3,
+                    explanation: "Il legame ionico deriva dall'attrazione elettrostatica tra ioni di carica opposta (cationi e anioni)."
+                },
+                {
+                    q: "Quale dei seguenti elenchi pone correttamente in ordine crescente l'energia di legame?",
+                    options: [
+                        "Forze dipolo-dipolo, forze di van der Waals, legame covalente, legame idrogeno.",
+                        "Legame idrogeno, forze di van der Waals, legame covalente, forze dipolo-dipolo.",
+                        "Legame idrogeno, legame covalente, forze di van der Waals, forze dipolo-dipolo.",
+                        "Forze di van der Waals, interazioni dipolo-dipolo, legame idrogeno, legame covalente."
+                    ],
+                    correct: 3,
+                    explanation: "Le forze di van der Waals sono le più deboli, seguite da dipolo-dipolo, legame a idrogeno e infine il forte legame covalente."
+                },
+                {
+                    q: "Il legame ionico è una forza di attrazione elettrostatica tra:",
+                    options: ["ioni dello stesso elemento.", "ioni di carica opposta.", "molecole polari.", "ioni della stessa carica."],
+                    correct: 1,
+                    explanation: "Si fonda sull'interazione attrattiva tra ioni positivi e negativi."
+                },
+                {
+                    q: "Una soluzione ha pH=3. Il valore di [OH-] è:",
+                    options: ["[OH-]=10exp-7", "Nessuna delle altre risposte è corretta", "[OH-]= 11", "[OH-]=10-11"],
+                    correct: 3,
+                    explanation: "Se il pH è 3, il pOH è 11, di conseguenza la concentrazione [OH-] è pari a 10^-11 M."
+                },
+                {
+                    q: "Il legame idrogeno:",
+                    options: ["è presente nell'acqua in fase solida.", "è un legame forte.", "si stabilisce tra atomi dello stesso elemento.", "è un legame covalente."],
+                    correct: 0,
+                    explanation: "Il legame a idrogeno caratterizza fortemente la struttura del ghiaccio (acqua solida)."
+                },
+                {
+                    q: "Nella molecola di H2O sono presenti:",
+                    options: [
+                        "due coppie solitarie sull'atomo di ossigeno.",
+                        "solo elettroni di legame.",
+                        "non sono presenti coppie solitarie",
+                        "una coppia solitaria su ciascun atomo di idrogeno."
+                    ],
+                    correct: 0,
+                    explanation: "L'atomo di ossigeno nell'acqua possiede due coppie di elettroni non condivise (coppie solitarie)."
+                },
+                {
+                    q: "Un legame polare:",
+                    options: [
+                        "Gli elettroni sono ugualmente condivisi",
+                        "È un legame tra atomi di elettronegatività diversa",
+                        "È un legame idrogeno.",
+                        "È un legame ionico."
+                    ],
+                    correct: 1,
+                    explanation: "La differenza di elettronegatività tra gli atomi genera una polarizzazione del legame."
+                },
+                {
+                    q: "Litio e potassio:",
+                    options: [
+                        "possiedono lo stesso numero di elettroni nell'ultimo livello",
+                        "tutte le risposte sono corrette",
+                        "formano entrambi ioni negativi",
+                        "possiedono lo stesso numero di protoni nel nucleo"
+                    ],
+                    correct: 0,
+                    explanation: "Appartenendo entrambi al primo gruppo (metalli alcalini), hanno 1 elettrone di valenza."
+                }
+            ]
+        },
+        7: {
+            title: "Lezione 7: Composti Organici e Alcoli",
+            questions: [
+                {
+                    q: "Le ammine sono composti organici formalmente derivati da:",
+                    options: ["acido nitroso", "acido nitrico", "ammoniaca", "idrazina"],
+                    correct: 2,
+                    explanation: "Le ammine derivano formalmente dalla sostituzione degli atomi di idrogeno dell'ammoniaca (NH3) con gruppi organici."
+                },
+                {
+                    q: "La variazione di energia libera di una reazione all'equilibrio è:",
+                    options: ["nulla", ">0", "<0", "Nessuna delle altre risposte è corretta"],
+                    correct: 0,
+                    explanation: "All'equilibrio la variazione di energia libera ΔG è nulla."
+                },
+                {
+                    q: "Un alcol si definisce secondario:",
+                    options: [
+                        "ha il gruppo –OH legato a un carbonio che reca ad altri due atomi di carbonio.",
+                        "ha un gruppo –OH legato al carbonio numero 2 della catena.",
+                        "ha il gruppo –OH legato a un carbonio che reca ad altri due atomi di idrogeno.",
+                        "ha due gruppi –OH legati allo stesso carbonio."
+                    ],
+                    correct: 0,
+                    explanation: "In un alcol secondario, il carbonio portante il gruppo -OH è legato ad altri due atomi di carbonio."
+                },
+                {
+                    q: "I composti organici:",
+                    options: [
+                        "sono tutti derivabili da materiale precedentemente vivente, cioè da strutture organizzate.",
+                        "sono composti del carbonio.",
+                        "sono tutti idrocarburi.",
+                        "contengono solo atomi di carbonio come il diamante e la grafite."
+                    ],
+                    correct: 1,
+                    explanation: "La chimica organica è per definizione la chimica dei composti del carbonio."
+                },
+                {
+                    q: "Il gruppo carbossilico è:",
+                    options: ["anfotero", "dissociabile come base.", "dissociabile come acido.", "apolare"],
+                    correct: 2,
+                    explanation: "Il gruppo carbossilico (-COOH) può cedere un protone comportandosi da acido."
+                }
+            ]
+        },
+        8: {
+            title: "Lezione 8: Unità di Misura e Notazione",
+            questions: [
+                {
+                    q: "Esprimi 0,003 in notazione scientifica",
+                    options: ["3 · 10^-3", "3 · 10^-2", "1 · 10^-3", "3 · 10^-4"],
+                    correct: 0,
+                    explanation: "Spostando la virgola di tre posizioni a destra si ottiene 3 × 10^-3."
+                },
+                {
+                    q: "0,0001 L equivalgono a :",
+                    options: ["100 mL", "0,1 mircoL", "100 microl", "1 cc"],
+                    correct: 2,
+                    explanation: "0,0001 litri corrispondono a 0,1 mL ovvero 100 microlitri."
+                },
+                {
+                    q: "Attraverso quali operazioni matematiche sulle unità fondamentali del SI si ottengono le grandezze derivate?",
+                    options: ["Moltiplicazione e divisione.", "Moltiplicazione ed elevamento a potenza.", "Somma e divisione.", "Somma e sottrazione."],
+                    correct: 0,
+                    explanation: "Le grandezze derivate si ricavano tramite moltiplicazione e divisione delle unità fondamentali."
+                }
+            ]
+        },
+        9: {
+            title: "Lezione 9: Amminoacidi e Immagini",
+            questions: [
+                {
+                    q: "Quale è l'amminoacido rappresentato in figura?",
+                    image: "img/arginina_1.png",
+                    options: ["L-lisina", "L-arginina", "nessuna delle precedenti risposte è corretta", "L-valina"],
+                    correct: 1,
+                    explanation: "La struttura mostrata appartiene all'L-arginina."
+                },
+                {
+                    q: "I legami peptidici, che legano covalentemente tra loro due amminoacidi, derivano da…",
+                    options: [
+                        "i legami idrogeno tra amminoacidi.",
+                        "l'idrolisi degli amminoacidi.",
+                        "l'ossidazione degli amminoacidi.",
+                        "la condensazione degli amminoacidi."
+                    ],
+                    correct: 3,
+                    explanation: "Il legame peptidico si forma mediante una reazione di condensazione."
+                },
+                {
+                    q: "La L-alanina e la D-alanina…",
+                    options: [
+                        "mancano del gruppo R.",
+                        "sono presenti praticamente in tutte le proteine.",
+                        "sono l'una l'isomero sovrapponibile dell'altra.",
+                        "sono enantiomeri."
+                    ],
+                    correct: 3,
+                    explanation: "Gli enantiomeri sono stereoisomeri speculari non sovrapponibili."
+                },
+                {
+                    q: "Al centro di tutti i 20 amminoacidi standard si trova quello che è definito carbonio α... Quale dei seguenti quattro gruppi non è un normale componente di tutti gli amminoacidi?",
+                    options: ["un gruppo amminico", "una catena laterale (gruppo R)", "un gruppo carbossilico", "un gruppo metile"],
+                    correct: 3,
+                    explanation: "Il gruppo metile non è presente in tutti gli amminoacidi standard (ad es. nella glicina c'è un atomo di idrogeno)."
+                },
+                {
+                    q: "Cosa rappresenta il seguente composto?",
+                    image: "img/composto_peptide.png",
+                    options: ["un generico dipeptide", "una acido nucleico", "un generico tetrapetide", "un generico tripeptide"],
+                    correct: 0,
+                    explanation: "Il composto raffigura due residui amminoacidici uniti da un legame peptidico (dipeptide)."
+                },
+                {
+                    q: "Relativamente al composto rappresentato in figura quale amminoacido ha ha il gruppo Amminico libero?",
+                    image: "img/amminico_libero.png",
+                    options: ["valina", "cisteina", "glicina", "serina"],
+                    correct: 2,
+                    explanation: "Nel peptide illustrato, il residuo con il gruppo amminico libero (N-terminale) è la glicina."
+                },
+                {
+                    q: "quale composto è rappresentato nella seguente figura?",
+                    image: "img/glicin_cisteina.png",
+                    options: [
+                        "un dipeptide : la glicin-cisteina",
+                        "un dipeptide : la serin-cisteina",
+                        "un dipeptide : la glicin-prolina",
+                        "un dipeptide : la serin-prolina"
+                    ],
+                    correct: 0,
+                    explanation: "La struttura evidenzia i residui di glicina e cisteina legati covalentemente."
+                },
+                {
+                    q: "Quale è l'amminoacido rappresentato nella seguente figura?",
+                    image: "img/acido_glutammico.png",
+                    options: ["acido L-aspartico", "L-glutammina", "acido L-glutammico", "L-Leucina"],
+                    correct: 2,
+                    explanation: "La catena laterale presenta due gruppi metilenici prima del secondo gruppo carbossilico, caratteristico dell'acido glutammico."
+                },
+                {
+                    q: "Quale è l'amminoacido rappresentato nella seguente figura?",
+                    image: "img/istidina.png",
+                    options: ["L-istidina", "L-valina", "L-prolina", "L-leucina"],
+                    correct: 0,
+                    explanation: "La catena laterale contiene un anello imidazolico, tipico dell'istidina."
+                },
+                {
+                    q: "Quale è l'amminoacido rappresentato nella seguente figura?",
+                    image: "img/cisteina.png",
+                    options: ["L-prolina", "L-cisteina", "nessuna delle precedenti risposte è corretta", "L-istidina"],
+                    correct: 1,
+                    explanation: "La presenza del gruppo tiolico (-CH2-SH) identifica chiaramente la cisteina."
+                },
+                {
+                    q: "Quale dei seguenti amminoacidi ha una carica netta negativa a pH 7,0?",
+                    options: ["aspartato", "aspartato", "glicina", "aspartato"],
+                    correct: 0,
+                    explanation: "L'aspartato possiede un gruppo carbossilico laterale ionizzato a pH fisiologico."
+                },
+                {
+                    q: "Il fattore che NON influisce sul valore di pKa di un amminoacido è _________",
+                    options: [
+                        "Altri fattori ambientali",
+                        "Peso molecolare",
+                        "La perdita di carica nei gruppi α-carbossile e α-ammino",
+                        "Le interazioni con altri gruppi di peptidi R"
+                    ],
+                    correct: 1,
+                    explanation: "Il peso molecolare non influenza i valori di pKa dei gruppi funzionali."
+                },
+                {
+                    q: "l'amminoacido riportato in figura è?",
+                    image: "img/lisina.png",
+                    options: ["asparagina", "glutammina", "lisina", "treonina"],
+                    correct: 2,
+                    explanation: "La catena laterale termina con un gruppo amminico primario ed è composta da quattro metileni (lisina)."
+                },
+                {
+                    q: "Come si chiama l'amminoacido rappresentato in figura?",
+                    image: "img/prolina.png",
+                    options: ["Prolina", "Glicina", "Cisteina", "Asparagina"],
+                    correct: 0,
+                    explanation: "La struttura ciclica con azoto integrato in un anello definisce la prolina."
+                },
+                {
+                    q: "Quale delle seguenti affermazioni è più probabile che sia vera per i gruppi R non polari degli amminoacidi in soluzione acquosa?",
+                    options: [
+                        "Sono idrofobici e si trovano all'interno delle proteine.",
+                        "Sono idrofili e si trovano all'interno delle proteine.",
+                        "Sono idrofobici e si trovano sulla superficie delle proteine.",
+                        "Sono idrofili e si trovano sulla superficie delle proteine."
+                    ],
+                    correct: 0,
+                    explanation: "I residui idrofobici tendono a seppellirsi all'interno della struttura proteica."
+                },
+                {
+                    q: "L'amminoacido riportato in figura è?",
+                    image: "img/metionina.png",
+                    options: ["asparagina", "triptofano", "prolina", "metionina"],
+                    correct: 3,
+                    explanation: "La catena laterale con un gruppo tioetere corrisponde alla metionina."
+                },
+                {
+                    q: "L'amminoacido riportato in figura è?",
+                    options: ["metionina", "triptofano", "prolina", "asparagina"],
+                    correct: 0,
+                    explanation: "Rappresenta l'amminoacido solforato metionina."
+                },
+                {
+                    q: "Un tripeptidie ha",
+                    options: [
+                        "3 amminoacidi e 2 legami peptidici",
+                        "3 amminoacidi e 3 legami peptidici",
+                        "2 amminoacidi e 2 legami peptidici",
+                        "2 amminoacidi e 3 legami peptidici"
+                    ],
+                    correct: 0,
+                    explanation: "Tre amminoacidi sono uniti da 2 legami peptidici."
+                },
+                {
+                    q: "Come si chiama l'amminoacido riportato in figura?",
+                    image: "img/arginina_2.png",
+                    options: ["alanina", "arginina", "lisina", "asparagina"],
+                    correct: 1,
+                    explanation: "La catena laterale termina con il gruppo guanidinico caratteristico dell'arginina."
+                },
+                {
+                    q: "Il carbonio alfa di un amminoacido è legato a :",
+                    options: [
+                        "Un gruppo amminico , two gruppi carbossilici, un gruppo carbonilico",
+                        "Un gruppo amminico, un gruppo carbossilico , un atomo di idrogeno e un gruppo solforico",
+                        "Un gruppo amminico, un gruppo carbossilico , un atomo di idrogeno e un gruppo R variabile definito catena laterale.",
+                        "due gruppi amminici, un gruppo carbossilico acido ed un atomo di idrogeno"
+                    ],
+                    correct: 2,
+                    explanation: "Il carbonio alfa lega il gruppo amminico, il carbossilico, l'idrogeno e il gruppo R."
+                },
+                {
+                    q: "Quale dei seguenti è un imminoacido",
+                    options: ["acido aspartico", "prolina", "glicina", "lisina"],
+                    correct: 1,
+                    explanation: "La prolina è classificata come imminoacido."
+                },
+                {
+                    q: "Una struttura che ha legami idrogeno tra catene polipeptidiche disposte fianco a fianco è chiamata____",
+                    options: ["struttura primaria", "Struttura terziaria", "Fogli β pieghettati", "α-elica"],
+                    correct: 2,
+                    explanation: "I foglietti beta pieghettati si formano tramite legami a idrogeno tra filamenti adiacenti."
+                },
+                {
+                    q: "come si chiama l'amminoacido riportato in figura?",
+                    image: "img/asparagina.png",
+                    options: ["valina", "acido aspartico", "prolina", "asparagina"],
+                    correct: 3,
+                    explanation: "La catena laterale ammidica identifica l'asparagina."
+                }
+            ]
+        },
+        10: {
+            title: "Lezione 10: Struttura delle Proteine",
+            questions: [
+                {
+                    q: "Quali legami sono planari (cioè, non possono ruotare) nello scheletro di un polipeptide?",
+                    options: ["I legami C–N.", "I legami N–Cα", "I legami Cα–Cα.", "I legami Cα–C."],
+                    correct: 0,
+                    explanation: "Il legame peptidico C–N ha parziale carattere di doppio legame e risulta planare."
+                },
+                {
+                    q: "I residui di cisteina svolgono un ruolo importante nella struttura di molte proteine perché…",
+                    options: [
+                        "formano ponti disolfuro con la glicina",
+                        "formano legami covalenti tra parti di una stessa molecola proteica o tra due diverse catene.",
+                        "subiscono la riduzione di due residui",
+                        "legano due catene proteiche per mezzo di interazioni idrofobiche"
+                    ],
+                    correct: 1,
+                    explanation: "Possono formare ponti disolfuro covalenti stabilizzanti."
+                },
+                {
+                    q: "Perché nei polipeptidi la conformazione ad α elica è una forma così stabile?",
+                    options: [
+                        "La struttura dell'α elica è stabilizzata da legami idrogeno",
+                        "La struttura dell'α elica è stabilizzata da residui di prolina.",
+                        "La struttura dell'α elica è stabilizzata da ponti disolfuro.",
+                        "La struttura dell'α elica è stabilizzata da interazioni idrofobiche."
+                    ],
+                    correct: 0,
+                    explanation: "Una fitta rete di legami a idrogeno intramolecolari stabilizza l'alfa-elica."
+                },
+                {
+                    q: "In quale delle seguenti strutture secondarie è più probabile trovare residui di prolina?",
+                    options: ["Una regione superavvolta.", "Un foglietto β.", "Un'α elica.", "Un ripiegamento β."],
+                    correct: 3,
+                    explanation: "La rigidità della prolina la rende ideale per interrompere le eliche e formare ripiegamenti beta."
+                },
+                {
+                    q: "Quale o quali gruppi in una proteina contribuiscono in maniera preponderante alle sue proprietà acido-base complessive?",
+                    options: [
+                        "Il gruppo α-carbossilico C-terminale della proteina",
+                        "Il gruppo α-amminico N-terminale della proteina",
+                        "I gruppi α-amminici di tutti gli amminoacidi non terminali.",
+                        "I gruppi R sulla proteina."
+                    ],
+                    correct: 3,
+                    explanation: "Le catene laterali (gruppi R) ionizzabili determinano il comportamento acido-base globale."
+                },
+                {
+                    q: "Il legame peptidico è un _________",
+                    options: ["Legame covalente", "Legame idrogeno", "Legame ionico", "RISPOSTA 4"],
+                    correct: 0,
+                    explanation: "Il legame peptidico è di natura covalente."
+                },
+                {
+                    q: "Cosa si verifica durante la formazione del legame peptidico?",
+                    options: [
+                        "perdita di un ossidrile di un gruppo carbossilico di un amminoacido e di un atomo di idrogeno dal gruppo amminico di un altro amminoacido",
+                        "perdita di un atomo di idrogeno di un gruppo carbossilico un amminoacido e di un ossidrile dal gruppo amminico di un altro amminoacido",
+                        "tutte le risposte sono errate",
+                        "perdita di di un ossidrile di un gruppo carbossilico un amminoacido e di un ossidrile dal gruppo amminico di un altro amminoacido"
+                    ],
+                    correct: 0,
+                    explanation: "Si eliminano un gruppo ossidrile (-OH) dal carbossile e un idrogeno (-H) dall'amminio (formazione di acqua)."
+                },
+                {
+                    q: "La conformazione terziaria delle proteine è mantenuta da 3 tipi di legami vale a dire ionici, idrogeno e _________",
+                    options: ["peptidico", "Disolfuro", "Covalente", "ammidico"],
+                    correct: 1,
+                    explanation: "I ponti disolfuro sono cruciali per la struttura terziaria."
+                },
+                {
+                    q: "Tra quali gruppi chimici si instaurano legami idrogeno tra amminoacidi in un polipeptide?",
+                    options: ["I gruppi C=O", "I gruppi C=O e N–H.", "I gruppi C=O e C–R", "I gruppi C=O e C–H"],
+                    correct: 1,
+                    explanation: "Il legame a idrogeno unisce l'ossigeno carbonilico (C=O) all'idrogeno ammidico (N-H)."
+                }
+            ]
+        }
+    };
+
+    let currentLesson = null;
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function loadLesson(lessonId) {
+        currentLesson = databaseLezioni[lessonId];
+        currentQuestionIndex = 0;
+        score = 0;
+        
+        document.getElementById('main-menu').classList.add('hidden');
+        document.getElementById('quiz-area').classList.remove('hidden');
+        document.getElementById('lesson-title').innerText = currentLesson.title;
+        
+        showQuestion();
+    }
+
+    function showQuestion() {
+        const container = document.getElementById('question-container');
+        const nextBtn = document.getElementById('next-btn');
+        nextBtn.classList.add('hidden');
+        
+        if (currentQuestionIndex >= currentLesson.questions.length) {
+            container.innerHTML = `<h3>Quiz Completato!</h3><p>Hai risposto correttamente a ${score} su ${currentLesson.questions.length} domande.</p>`;
+            return;
+        }
+
+        const qData = currentLesson.questions[currentQuestionIndex];
+        let html = `<div class="question-card">
+            <p><strong>Domanda ${currentQuestionIndex + 1} di ${currentLesson.questions.length}</strong></p>
+            <p>${qData.q}</p>`;
+            
+        if (qData.image) {
+            html += `<img src="${qData.image}" class="quiz-img" alt="Immagine domanda" onerror="this.style.display='none'">`;
+        }
+        
+        html += `<div class="options">`;
+        qData.options.forEach((opt, idx) => {
+            html += `<label><input type="radio" name="option" value="${idx}"> ${opt}</label>`;
+        });
+        html += `</div>
+            <button class="btn" onclick="checkAnswer()">Rispondi</button>
+            <div id="feedback" class="feedback hidden"></div>
+        </div>`;
+        
+        container.innerHTML = html;
+    }
+
+    function checkAnswer() {
+        const selected = document.querySelector('input[name="option"]:checked');
+        if (!selected) {
+            alert("Seleziona una risposta prima di procedere!");
+            return;
+        }
+
+        const userAnswer = parseInt(selected.value);
+        const qData = currentLesson.questions[currentQuestionIndex];
+        const feedbackDiv = document.getElementById('feedback');
+        
+        feedbackDiv.classList.add('hidden');
+        if (userAnswer === qData.correct) {
+            feedbackDiv.className = "feedback correct";
+            feedbackDiv.innerHTML = `Risposta Corretta! ${qData.explanation}`;
+            score++;
+        } else {
+            feedbackDiv.className = "feedback incorrect";
+            feedbackDiv.innerHTML = `Risposta Errata. La risposta corretta era: "${qData.options[qData.correct]}".<br>${qData.explanation}`;
+        }
+
+        const radios = document.querySelectorAll('input[name="option"]');
+        radios.forEach(r => r.disabled = true);
+
+        document.getElementById('next-btn').classList.remove('hidden');
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        showQuestion();
+    }
+
+    function goHome() {
+        document.getElementById('quiz-area').classList.add('hidden');
+        document.getElementById('main-menu').classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
