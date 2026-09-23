@@ -1,1 +1,787 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulatore Quiz - Biochimica (Lezioni 11-19)</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #2ecc71;
+            --bg-color: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: var(--primary-color);
+            text-align: center;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .lesson-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-align: center;
+        }
+        .lesson-btn:hover {
+            background-color: #2980b9;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .question-card {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .options label {
+            display: block;
+            padding: 10px;
+            margin: 8px 0;
+            background: #f1f2f6;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .options label:hover {
+            background: #dfe4ea;
+        }
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .btn:hover {
+            background-color: #34495e;
+        }
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .correct { background-color: #d4edda; color: #155724; }
+        .incorrect { background-color: #f8d7da; color: #721c24; }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
 
+<div class="container" id="app">
+    <!-- MENU PRINCIPALE -->
+    <div id="main-menu">
+        <h1>Simulatore Esame di Biochimica</h1>
+        <h2>Scienze Biologiche - Prof. Cautela Domenico (Lezioni 11-19)</h2>
+        <p style="text-align: center; color: #666;">Seleziona la lezione che desideri esercitare:</p>
+        
+        <div class="menu-grid">
+            <button class="lesson-btn" onclick="loadLesson(11)">Lezione 11: Emoglobina e Proteine</button>
+            <button class="lesson-btn" onclick="loadLesson(12)">Lezione 12: Collagene</button>
+            <button class="lesson-btn" onclick="loadLesson(13)">Lezione 13: Struttura e Denaturazione</button>
+            <button class="lesson-btn" onclick="loadLesson(14)">Lezione 14: Mioglobina e Proteine</button>
+            <button class="lesson-btn" onclick="loadLesson(15)">Lezione 15: Proteine Contenenti Eme</button>
+            <button class="lesson-btn" onclick="loadLesson(16)">Lezione 16: Proteine Globulari e Fibrose</button>
+            <button class="lesson-btn" onclick="loadLesson(17)">Lezione 17: Enzimi e Catalisi</button>
+            <button class="lesson-btn" onclick="loadLesson(18)">Lezione 18: Cinetica Enzimatica e Km</button>
+            <button class="lesson-btn" onclick="loadLesson(19)">Lezione 19: Inibizione e Modulazione</button>
+        </div>
+    </div>
+
+    <!-- AREA QUIZ -->
+    <div id="quiz-area" class="hidden">
+        <a class="back-link" onclick="goHome()">← Torna al Menu Principale</a>
+        <h2 id="lesson-title">Titolo Lezione</h2>
+        <div id="question-container"></div>
+        <button id="next-btn" class="btn hidden" onclick="nextQuestion()">Prossima Domanda</button>
+    </div>
+</div>
+
+<script>
+    const databaseLezioni = {
+        11: {
+            title: "Lezione 11: Emoglobina e Proteine",
+            questions: [
+                {
+                    q: "Quale delle seguenti affermazioni sulla transizione T (stato teso) → R (stato rilasciato) dell'emoglobina è vera?",
+                    options: [
+                        "Quando l'emoglobina compie la transizione T → R, le strutture delle singole subunità cambiano drammaticamente.",
+                        "Lo stato T possiede una tasca tra subunità β più stretta rispetto allo stato R.",
+                        "Il legame di O2 a una subunità nello stato T può causare la transizione delle altre subunità allo stato R.",
+                        "Lo stato T dell'emoglobina lega l'ossigeno con affinità maggiore dello stato R."
+                    ],
+                    correct: 2,
+                    explanation: "Il legame dell'ossigeno a una subunità stabilisce la transizione allosterica verso lo stato R delle altre subunità."
+                },
+                {
+                    q: "Il livello di struttura proteica che descrive tutti gli aspetti del ripiegamento tridimensionale di un polipeptide è definito…",
+                    options: [
+                        "struttura quaternaria.",
+                        "struttura terziaria.",
+                        "struttura primaria.",
+                        "struttura secondaria."
+                    ],
+                    correct: 1,
+                    explanation: "La struttura terziaria definisce la disposizione tridimensionale completa di una singola catena polipeptidica."
+                },
+                {
+                    q: "Quale delle seguenti informazioni è responsabile della forma tridimensionale di una proteina?",
+                    options: [
+                        "L'interazione della proteina con i chaperon molecolari",
+                        "L'interazione della proteina con altri polipeptidi",
+                        "Il legame peptidico della proteina",
+                        "La sequenza aminoacidica della proteina"
+                    ],
+                    correct: 3,
+                    explanation: "La sequenza amminoacidica (struttura primaria) determina univocamente il folding tridimensionale."
+                },
+                {
+                    q: "Quale delle seguenti affermazioni è vera per tutte le deidrogenasi che partecipano al ciclo dell'acido citrico?",
+                    options: [
+                        "Generano trasportatori di elettroni in forma ridotta.",
+                        "Catalizzano reazioni di condensazione.",
+                        "Convertono un legame singolo in un legame doppio.",
+                        "Producono CO2."
+                    ],
+                    correct: 0,
+                    explanation: "Le deidrogenasi trasferiscono elettroni generando coenzimi ridotti (NADH o FADH2)."
+                },
+                {
+                    q: "Qual è il vantaggio biologico della curva di legame sigmoide dell'emoglobina per l'ossigeno?",
+                    options: [
+                        "Garantisce che l'emoglobina leghi l'ossigeno solo debolmente.",
+                        "Permette all'emoglobina di legare l'ossigeno in modo irreversibile.",
+                        "Garantisce che l'emoglobina abbia un'elevata affinità per l'ossigeno.",
+                        "Permette all'emoglobina di passare da una bassa a un'elevata affinità per l'ossigeno."
+                    ],
+                    correct: 3,
+                    explanation: "La cooperatività (curva sigmoide) assicura un efficiente caricamento nei polmoni e rilascio nei tessuti."
+                },
+                {
+                    q: "In che modo l'emoglobina lega O2 con un meccanismo cooperativo?",
+                    options: [
+                        "Il legame di una molecola di O2 a una subunità di emoglobina aumenta l'affinità della stessa subunità per ulteriori molecole di O2.",
+                        "Il legame di una molecola di O2 a una molecola proteica di emoglobina favorisce il legame di un'altra molecola di O2 a una diversa molecola di emoglobina.",
+                        "Il legame di una molecola di O2 a una subunità di emoglobina aumenta l'affinità delle altre subunità per O2.",
+                        "Il legame di una molecola di O2 a una subunità di emoglobina potenzia l'assemblaggio delle altre subunità per formare una molecola proteica completa."
+                    ],
+                    correct: 2,
+                    explanation: "Il legame dell'ossigeno a una subunità aumenta l'affinità delle subunità adiacenti (cooperatività positiva)."
+                },
+                {
+                    q: "Quale delle seguenti affermazioni su proteine ed enzimi è vera?",
+                    options: [
+                        "Tutte le proteine legano ligandi.",
+                        "Tutte le proteine hanno siti attivi.",
+                        "Sono tutte vere",
+                        "Tutti gli enzimi hanno attività catalitica."
+                    ],
+                    correct: 3,
+                    explanation: "Per definizione, gli enzimi sono proteine o ribozimi dotati di attività catalitica."
+                },
+                {
+                    q: "Dopo la traduzione e il ripiegamento, molti recettori tirosin chinasici esistono come monomeri... Durante questo processo, la struttura proteica cambia da:",
+                    options: [
+                        "da terziaria a quaternaria",
+                        "da secondaria a terziaria",
+                        "da primaria a secondaria",
+                        "da secondaria a quaternaria"
+                    ],
+                    correct: 0,
+                    explanation: "L'associazione di monomeri indipendenti in un complesso oligomerico attivo costituisce la struttura quaternaria."
+                },
+                {
+                    q: "Quale delle seguenti affermazioni riguardanti la struttura è corretta?",
+                    options: [
+                        "I legami disolfuro si formano fra residui di cisteina adiacenti nella struttura primaria della proteina",
+                        "La forza principale che favorisce il ripiegamento delle proteine è l’effetto idrofobico.",
+                        "Le proteine formate da un singolo polipeptide hanno una struttura quaternaria che viene stabilizzata da legami covalenti.",
+                        "nessuna delle affermazioni è corretta"
+                    ],
+                    correct: 1,
+                    explanation: "L'effetto idrofobico è la forza termodinamicamente principale che guida il folding proteico."
+                }
+            ]
+        },
+        12: {
+            title: "Lezione 12: Collagene",
+            questions: [
+                {
+                    q: "Il collagene è caratterizzato da tre catene polipeptidiche separate che sono strettamente avvolte l'una intorno all'altra in una 'tripla elica'. Quale di questi aminoacidi è più probabile che si trovi in massima concentrazione nel collagene?",
+                    options: [
+                        "cisteina",
+                        "prolina",
+                        "glicina",
+                        "treonina"
+                    ],
+                    correct: 2,
+                    explanation: "La glicina è l'amminoacido più piccolo e si trova ogni tre residui, consentendo il fitto avvolgimento della tripla elica."
+                }
+            ]
+        },
+        13: {
+            title: "Lezione 13: Struttura e Denaturazione",
+            questions: [
+                {
+                    q: "L'emoglobina è un __________",
+                    options: [
+                        "dimero",
+                        "tetramero",
+                        "monomero",
+                        "trimero"
+                    ],
+                    correct: 1,
+                    explanation: "L'emoglobina è un tetramero composto da due subunità alfa e due subunità beta."
+                },
+                {
+                    q: "Quale dei seguenti aa si trova abbondantemente nel collagene?",
+                    options: [
+                        "triptofano",
+                        "lisina",
+                        "serina",
+                        "Glicina"
+                    ],
+                    correct: 3,
+                    explanation: "La glicina è l'amminoacido predominante nella struttura del collagene."
+                },
+                {
+                    q: "Nel legame dell'ossigeno alla mioglobina, la relazione tra la concentrazione di ossigeno e la frazione dei siti di legame occupati può essere meglio descritta come ___________",
+                    options: [
+                        "Parabolico",
+                        "Lineare con una pendenza negativa",
+                        "Lineare con una pendenza positiva",
+                        "Iperbolico"
+                    ],
+                    correct: 3,
+                    explanation: "La curva di saturazione della mioglobina rispetto all'ossigeno è iperbolica."
+                },
+                {
+                    q: "Quale dei seguenti NON è un fattore responsabile della denaturazione delle proteine?",
+                    options: [
+                        "solventi organici",
+                        "Calore",
+                        "cambiamento di pH",
+                        "Carica"
+                    ],
+                    correct: 3,
+                    explanation: "La carica netta in sé non denatura la proteina, mentre calore, pH e solventi alterano le interazioni stabilizzanti."
+                },
+                {
+                    q: "Due catene di aminoacidi in una molecola di insulina sono tenute insieme da __________",
+                    options: [
+                        "legame peptidico",
+                        "ponti disolfuro",
+                        "legame ionici",
+                        "legami idrogeno"
+                    ],
+                    correct: 1,
+                    explanation: "Le catene A e B dell'insulina sono collegate da ponti disolfuro intercatena."
+                }
+            ]
+        },
+        14: {
+            title: "Lezione 14: Mioglobina e Proteine",
+            questions: [
+                {
+                    q: "La mioglobina e le subunità di emoglobina hanno ___________",
+                    options: [
+                        "Strutture primarie molto simili, ma strutture terziarie diverse",
+                        "Strutture primarie e terziarie molto diverse",
+                        "Strutture terziarie molto simili, ma strutture primarie diverse",
+                        "Strutture primarie e terziarie molto simili"
+                    ],
+                    correct: 2,
+                    explanation: "Nonostante una bassa omologia di sequenza (primaria), condividono un fold tridimensionale (terziario) molto simile."
+                },
+                {
+                    q: "Quale delle seguenti informazioni è responsabile della forma tridimensionale di una proteina?",
+                    options: [
+                        "La sequenza aminoacidica della proteina",
+                        "L'interazione della proteina con i chaperon molecolari",
+                        "L'interazione della proteina con altri polipeptidi",
+                        "Il legame peptidico della proteina"
+                    ],
+                    correct: 0,
+                    explanation: "La sequenza primaria determina la struttura tridimensionale nativa."
+                },
+                {
+                    q: "La mioglobina è particolarmente abbondante in ________",
+                    options: [
+                        "pelle",
+                        "nervi",
+                        "eritrociti",
+                        "Muscoli"
+                    ],
+                    correct: 3,
+                    explanation: "La mioglobina è la proteina di riserva e diffusione dell'ossigeno nel tessuto muscolare."
+                },
+                {
+                    q: "Il legame dell'ossigeno con la mioglobina dipende da ___________",
+                    options: [
+                        "Concentrazione di emoglobina",
+                        "Kd",
+                        "Ka",
+                        "concentrazione di O2 e affinità della mioglobina per l'O2"
+                    ],
+                    correct: 3,
+                    explanation: "Il grado di saturazione dipende dalla pressione parziale (concentrazione) di ossigeno e dalla costante di affinità."
+                },
+                {
+                    q: "Il dispiegamento di una proteina può essere definito _________",
+                    options: [
+                        "rinaturazione",
+                        "folding",
+                        "riduzione",
+                        "denaturazione"
+                    ],
+                    correct: 3,
+                    explanation: "La perdita della struttura tridimensionale nativa è detta denaturazione."
+                },
+                {
+                    q: "Identifica l'affermazione sbagliata.",
+                    options: [
+                        "L'emoglobina è una proteina globulare",
+                        "L'emoglobina è una proteina fibrosa",
+                        "Il collagene è una proteina fibrosa",
+                        "Le proteine fibrose sono insolubili in acqua"
+                    ],
+                    correct: 1,
+                    explanation: "L'emoglobina è una proteina globulare, non fibrosa."
+                }
+            ]
+        },
+        15: {
+            title: "Lezione 15: Proteine Contenenti Eme",
+            questions: [
+                {
+                    q: "Quando l'ossigeno si lega a una proteina contenente eme, i due legami di coordinazione liberi di Fe2+ sono occupati da___________",
+                    options: [
+                        "Una molecola di O2 e un atomo di amminoacido",
+                        "un atomo di azoto piridinico",
+                        "Un atomo di O e un atomo di aminoacidi",
+                        "due molecole di ossigeno"
+                    ],
+                    correct: 0,
+                    explanation: "Il ferro dell'eme è coordinato all'anello porfirinico, a un residuo di istidina (amminoacido) e lega reversibilmente una molecola di O2."
+                }
+            ]
+        },
+        16: {
+            title: "Lezione 16: Proteine Globulari e Fibrose",
+            questions: [
+                {
+                    q: "Quale di queste affermazioni sulle proteine globulari è VERA?",
+                    options: [
+                        "Le proteine globulari possono svolgere attività enzimatica",
+                        "tutte le affermazioni sono corrette",
+                        "hanno un core idrofobico",
+                        "sono generalmente solubili in mezzo acquoso"
+                    ],
+                    correct: 1,
+                    explanation: "Le proteine globulari sono solubili, possiedono un core idrofobico interno e comprendono la maggior parte degli enzimi."
+                }
+            ]
+        },
+        17: {
+            title: "Lezione 17: Enzimi e Catalisi",
+            questions: [
+                {
+                    q: "Quale delle seguenti affermazioni riguardo agli enzimi è FALSA?",
+                    options: [
+                        "Gli enzimi accoppiano generalmente due reazioni (una esoergonica ed una endoergonica) utilizzando l'energia liberata.",
+                        "Gli enzimi non hanno specificità di substrato",
+                        "Gli enzimi permettono a reazioni chimiche cellulari di essere molto rapide.",
+                        "Gli enzimi permettono di abbassare la soglia dell'energia di attivazione."
+                    ],
+                    correct: 1,
+                    explanation: "Gli enzimi possiedono invece un altissimo grado di specificità per il proprio substrato."
+                },
+                {
+                    q: "Quale delle seguenti caratteristiche è tipica della catalisi enzimatica ma non della catalisi inorganica?",
+                    options: [
+                        "Opera spesso in condizioni fisiologiche di pH e temperatura.",
+                        "Lascia inalterato il catalizzatore al termine della reazione.",
+                        "Aumenta la velocità di una reazione.",
+                        "Non consente una modulazione dell'efficienza del catalizzatore."
+                    ],
+                    correct: 0,
+                    explanation: "La catalisi enzimatica è altamente efficiente in blande condizioni fisiologiche."
+                },
+                {
+                    q: "Ad un valore di pH del mezzo uguale al punto isoelettrico, in quale forma troviamo gli amminoacidi?",
+                    options: [
+                        "Forma dicationica (carica ++)",
+                        "Forma zwitterionica",
+                        "Forma anionica (carica -)",
+                        "Forma cationica (carica +)"
+                    ],
+                    correct: 1,
+                    explanation: "Al punto isoelettrico l'amminoacido presenta carica netta pari a zero, trovandosi come ione dipolare (zwitterione)."
+                },
+                {
+                    q: "Quale delle seguenti affermazioni riguardo agli enzimi è VERA?",
+                    options: [
+                        "Aumentano la loro velocità catalitica con l'aumentare della temperatura (entro limiti non denaturanti)",
+                        "Sono influenzati nella loro attività catalitica dal pH del mezzo",
+                        "Possono essere interessati da legame con modulatori, attivatori o inibitori",
+                        "Tutte le risposte sono corrette."
+                    ],
+                    correct: 3,
+                    explanation: "Temperatura, pH e modulatori influenzano profondamente l'attività enzimatica."
+                },
+                {
+                    q: "L'enzima che può aggiungere acqua a un doppio legame carbonio-carbonio o rimuovere l'acqua per creare un doppio legame senza rompere il legame è",
+                    options: [
+                        "Esterasi",
+                        "Idrolasi",
+                        "Idratasi",
+                        "Idrossilasi"
+                    ],
+                    correct: 2,
+                    explanation: "Le idratasi catalizzano l'addizione o l'eliminazione di acqua su doppi legami (appartengono alle liasi)."
+                },
+                {
+                    q: "Un oloenzima è",
+                    options: [
+                        "Tutti questi elementi",
+                        "Apoenzima",
+                        "Coenzima",
+                        "Unità funzionale"
+                    ],
+                    correct: 3,
+                    explanation: "L'oloenzima rappresenta l'unità cataliticamente attiva completa (apoenzima + cofattore/coenzima)."
+                },
+                {
+                    q: "Il punto isoelettrico di una proteina equivale",
+                    options: [
+                        "al valore di pH in cui la molecola proteica ha carica positiva",
+                        "al valore di pH in cui la molecola proteica ha carica negativa",
+                        "al valore di pH in cui si equivalgono il numero complessivo delle cariche negative e positive presenti in tutta la molecola",
+                        "al valore di pH in cui agiscono le pepsidasi"
+                    ],
+                    correct: 2,
+                    explanation: "Corrisponde al pH in cui la carica netta della proteina è nulla per bilanciamento tra cariche positive e negative."
+                },
+                {
+                    q: "Gli enzimi che catalizzano reazioni di sintesi di molecole complesse appartengono alla classe delle...",
+                    options: [
+                        "idrolasi",
+                        "isomerasi",
+                        "ligasi",
+                        "ossidoreduttasi"
+                    ],
+                    correct: 2,
+                    explanation: "Le ligasi catalizzano la giunzione di due molecole accoppiata all'idrolisi di legami ad alta energia."
+                },
+                {
+                    q: "Il glucosio presente nei nostri alimenti e nelle nostre cellule è l'enantiomero D-glucosio... l'enantiomero L-glucosio non può essere utilizzato perché…",
+                    options: [
+                        "la forma L del glucosio è meno ricca di energia.",
+                        "gli enzimi destinati a utilizzare il glucosio producono sostanze non utilizzabili.",
+                        "gli enzimi destinati a utilizzare il glucosio non riconoscono la forma L.",
+                        "la forma L non è solubile in acqua."
+                    ],
+                    correct: 2,
+                    explanation: "La stereospecificità degli enzimi impedisce il riconoscimento dell'isomero L."
+                },
+                {
+                    q: "Gli enzimi catalizzano le reazioni attraverso:",
+                    options: [
+                        "una diminuzione dell'energia totale dei reagenti.",
+                        "un aumento dell'energia del substrato.",
+                        "un aumento dell'entropia del sistema.",
+                        "una diminuzione dell'energia di attivazione della reazione."
+                    ],
+                    correct: 3,
+                    explanation: "Gli enzimi accelerano le reazioni abbassando l'energia di attivazione."
+                },
+                {
+                    q: "Molti enzimi presentano un secondo sito, detto allosterico... Pertanto si può dire che un enzima allosterico:",
+                    options: [
+                        "non può legare il substrato.",
+                        "è una proteina che può cambiare forma.",
+                        "non possiede il sito attivo.",
+                        "è una proteina priva di struttura terziaria."
+                    ],
+                    correct: 1,
+                    explanation: "Il legame al sito allosterico induce una modificazione conformazionale (cambio di forma) che regola la catalisi."
+                },
+                {
+                    q: "Quale fra le seguenti affermazioni definisce correttamente un coenzima?",
+                    options: [
+                        "Molecola o ione inorganico che si lega all'enzima stabilizzandone la struttura.",
+                        "Molecola o ione inorganico che deriva dalle vitamine.",
+                        "Molecola che partecipa all'azione catalitica dell'enzima.",
+                        "Molecola organica che consente all'enzima di svolgere la propria azione anche in forma denaturata."
+                    ],
+                    correct: 2,
+                    explanation: "Il coenzima è una molecola organica non proteinica che coadiuva l'enzima nella catalisi."
+                },
+                {
+                    q: "Indicare quale tra queste affermazioni riguardo il gruppo eme è CORRETTA",
+                    options: [
+                        "costituisce il gruppo prostetico dell'emoglobina e della mioglobina",
+                        "può legare l'ossigeno ma anche altri composti quali CO grazie all'atomo di ferro",
+                        "tutte le affermazioni sono corrette",
+                        "E' costituito da un anello protoporfirinico unito ad un atomo di ferro ferroso (Fe++)"
+                    ],
+                    correct: 2,
+                    explanation: "Tutte le affermazioni descrivono correttamente la natura e le proprietà del gruppo eme."
+                },
+                {
+                    q: "PEPSINA E TRIPSINA",
+                    options: [
+                        "sono enzimi appartenenti alla classe delle ligasi",
+                        "sono enzimi appartenenti alla classe delle idrolasi",
+                        "sono attivate dalle carbossipepsidasi",
+                        "sono enzimi appartenenti alla classe delle lipasi"
+                    ],
+                    correct: 1,
+                    explanation: "Pepsina e tripsina sono proteasi che scindono i legami peptidici tramite idrolasi."
+                },
+                {
+                    q: "La α-amilasi .....",
+                    options: [
+                        "è un enzima appartenente alla classe delle IDROLASI. Agisce in modo casuale su molecole polisaccaridiche idrolizzando i legami 1,4-α-D-glucosidici.",
+                        "è un enzima appartenente alla classe delle LIASI.",
+                        "è un enzima appartenente alla classe delle ISOMERASI.",
+                        "è un enzima appartenente alla classe delle IDROLASI. Agisce sui legami 1,4-β-D-glucosidici."
+                    ],
+                    correct: 0,
+                    explanation: "L'alfa-amilasi scinde i legami alfa-1,4 glicosidici nell'amido e nel glicogeno."
+                },
+                {
+                    q: "Il recettore dell'insulina è una proteina appartenente alla famiglia dei recettori tirosin-chinasici... Quale tra le seguenti affermazioni è corretta?",
+                    options: [
+                        "E' una proteina della matrice mitocondriale",
+                        "E' una proteina globulare solubile",
+                        "E' una proteina di membrana",
+                        "NON è una proteina di membrana"
+                    ],
+                    correct: 2,
+                    explanation: "I recettori tirosin-chinasici sono proteine transmembrana."
+                }
+            ]
+        },
+        18: {
+            title: "Lezione 18: Cinetica Enzimatica e Km",
+            questions: [
+                {
+                    q: "La Km di un enzima per un substrato è:",
+                    options: [
+                        "la concentrazione dell'enzima richiesta per la catalisi fisiologica.",
+                        "la minima concentrazione di substrato che satura l'enzima.",
+                        "la concentrazione di substrato che determina una velocità semimassimale della reazione.",
+                        "nessuna delle precedenti"
+                    ],
+                    correct: 2,
+                    explanation: "La costante di Michaelis-Menten (Km) corrisponde numericamente alla concentrazione di substrato alla quale la velocità di reazione è pari alla metà della velocità massima (Vmax/2)."
+                },
+                {
+                    q: "In seguito alla somministrazione di un farmaco antagonista la cui molecola è complementare al sito attivo di un enzima, la quantità di prodotto della reazione enzimatica sarà probabilmente:",
+                    options: [
+                        "aumentata perché il farmaco favorisce il legame tra enzima e substrato.",
+                        "diminuita perché il farmaco si lega al substrato.",
+                        "diminuita perché il farmaco compete con il substrato.",
+                        "aumentata perché il farmaco funziona da cofattore."
+                    ],
+                    correct: 2,
+                    explanation: "Un inibitore competitivo (antagonista complementare al sito attivo) riduce la velocità di formazione del prodotto."
+                },
+                {
+                    q: "Nella cinetica enzimatica Km significa",
+                    options: [
+                        "La concentrazione dell'enzima",
+                        "La concentrazione di substrato che dà una metà di Vmax",
+                        "La costante di dissociazione del complesso enzima-substrato",
+                        "La metà della concentrazione di substrato necessaria per raggiungere la Vmax"
+                    ],
+                    correct: 1,
+                    explanation: "La Km esprime la concentrazione di substrato necessaria per raggiungere metà della velocità massima."
+                }
+            ]
+        },
+        19: {
+            title: "Lezione 19: Inibizione e Modulazione",
+            questions: [
+                {
+                    q: "Quale è la principale differenza tra inibitori enzimatici reversibili competitivi e non competitivi?",
+                    options: [
+                        "Gli inibitori non competitivi legano l'enzima nel sito catalitico e i competitivi in un sito alternativo.",
+                        "Gli inibitori competitivi legano l'enzima nel suo sito catalitico mentre gli inibitori non competitivi legano l'enzima in un sito alternativo.",
+                        "Gli inibitori non competitivi non sono specifici mentre i competitivi sono specifici.",
+                        "Gli inibitori competitivi sono molto più efficaci dei non competitivi."
+                    ],
+                    correct: 1,
+                    explanation: "L'inibitore competitivo compete nel sito attivo, mentre il non competitivo si lega a un sito allosterico (alternativo)."
+                },
+                {
+                    q: "La modulazione dell'attività enzimatica è effettuata in modo particolarmente efficace attraverso:",
+                    options: [
+                        "presenza di inattivatori dell'enzima.",
+                        "fosforilazione e defosforilazione degli enzimi.",
+                        "polimerizzazione dell'enzima.",
+                        "denaturazione termica."
+                    ],
+                    correct: 1,
+                    explanation: "La fosforilazione reversibile è uno dei principali meccanismi di regolazione e modulazione enzimatica cellulare."
+                },
+                {
+                    q: "Un esempio di enzima extracellulare è",
+                    options: [
+                        "Lipasi pancreatica",
+                        "Citocromo ossidasi",
+                        "Lattato deidrogenasi",
+                        "Esochinasi"
+                    ],
+                    correct: 0,
+                    explanation: "La lipasi pancreatica viene secreta nel lume intestinale per svolgere la digestione extracellulare."
+                },
+                {
+                    q: "Gli enzimi, che sono prodotti in forma inattiva nelle cellule viventi, sono chiamati",
+                    options: [
+                        "Apoenzimi",
+                        "lisoziomi",
+                        "Citocromo ossidasi",
+                        "Proenzimi"
+                    ],
+                    correct: 3,
+                    explanation: "I proenzimi (o zimogeni) sono precursori inattivi attivati mediante taglio proteolitico."
+                },
+                {
+                    q: "La funzione di numerosi enzimi può essere attivata e disattivata attraverso la fosforilazione di specifici amminoacidi catalizzata da enzimi noti come:",
+                    options: [
+                        "fosforilasi",
+                        "proteinasi",
+                        "ciclasi",
+                        "chinasi"
+                    ],
+                    correct: 3,
+                    explanation: "Le protein-chinasi trasferiscono gruppi fosfato alle proteine bersaglio."
+                }
+            ]
+        }
+    };
+
+    let currentLesson = null;
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function loadLesson(lessonId) {
+        currentLesson = databaseLezioni[lessonId];
+        currentQuestionIndex = 0;
+        score = 0;
+        
+        document.getElementById('main-menu').classList.add('hidden');
+        document.getElementById('quiz-area').classList.remove('hidden');
+        document.getElementById('lesson-title').innerText = currentLesson.title;
+        
+        showQuestion();
+    }
+
+    function showQuestion() {
+        const container = document.getElementById('question-container');
+        const nextBtn = document.getElementById('next-btn');
+        nextBtn.classList.add('hidden');
+        
+        if (currentQuestionIndex >= currentLesson.questions.length) {
+            container.innerHTML = `<h3>Quiz Completato!</h3><p>Hai risposto correttamente a ${score} su ${currentLesson.questions.length} domande.</p>`;
+            return;
+        }
+
+        const qData = currentLesson.questions[currentQuestionIndex];
+        let html = `<div class="question-card">
+            <p><strong>Domanda ${currentQuestionIndex + 1} di ${currentLesson.questions.length}</strong></p>
+            <p>${qData.q}</p>
+            <div class="options">`;
+            
+        qData.options.forEach((opt, idx) => {
+            html += `<label><input type="radio" name="option" value="${idx}"> ${opt}</label>`;
+        });
+        
+        html += `</div>
+            <button class="btn" onclick="checkAnswer()">Rispondi</button>
+            <div id="feedback" class="feedback hidden"></div>
+        </div>`;
+        
+        container.innerHTML = html;
+    }
+
+    function checkAnswer() {
+        const selected = document.querySelector('input[name="option"]:checked');
+        if (!selected) {
+            alert("Seleziona una risposta prima di procedere!");
+            return;
+        }
+
+        const userAnswer = parseInt(selected.value);
+        const qData = currentLesson.questions[currentQuestionIndex];
+        const feedbackDiv = document.getElementById('feedback');
+        
+        feedbackDiv.classList.add('hidden');
+        if (userAnswer === qData.correct) {
+            feedbackDiv.className = "feedback correct";
+            feedbackDiv.innerHTML = `Risposta Corretta! ${qData.explanation}`;
+            score++;
+        } else {
+            feedbackDiv.className = "feedback incorrect";
+            feedbackDiv.innerHTML = `Risposta Errata. La risposta corretta era: "${qData.options[qData.correct]}".<br>${qData.explanation}`;
+        }
+
+        const radios = document.querySelectorAll('input[name="option"]');
+        radios.forEach(r => r.disabled = true);
+
+        document.getElementById('next-btn').classList.remove('hidden');
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        showQuestion();
+    }
+
+    function goHome() {
+        document.getElementById('quiz-area').classList.add('hidden');
+        document.getElementById('main-menu').classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
